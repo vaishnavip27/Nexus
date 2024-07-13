@@ -1,0 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
+.userInfo .search {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+  padding: 20px;
+}
+
+.userInfo .searchBar {
+  flex: 1;
+  background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 25px;
+  padding: 12px;
+}
+
+.userInfo input {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  color: white;
+  flex: 1;
+  font-size: 16px;
+  margin-left: 0.4rem;
+  font-family: "Nunito Sans", sans-serif;
+}
+
+.plus {
+  height: 25px;
+  width: 25px;
+  border: 1px solid white;
+  background-color: black;
+  padding: 4px;
+  border-radius: 10px;
+  cursor: pointer;
+  box-sizing: border-box;
+}

@@ -1,3 +1,6 @@
 .chat {
-  flex: 2;
+  flex-grow: 2; /* Chat will take 2 parts of the available space */
+  flex-shrink: 1; /* Chat can shrink if needed */
+  flex-basis: 0; /* Initial size before space distribution */
+  border: 1px solid #ccc; /* Optional: Add borders for visualization */
 }

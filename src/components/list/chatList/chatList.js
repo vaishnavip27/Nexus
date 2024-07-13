@@ -1,5 +1,5 @@
 import "./chatList.css";
 
 export default function ChatList() {
-  return <div className="ChatList"></div>;
+  return <div className="ChatList">ChatList</div>;
 }
