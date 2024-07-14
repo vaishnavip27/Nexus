@@ -1,3 +1,8 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+
 .chat {
   flex-grow: 2; /* Chat will take 2 parts of the available space */
   flex-shrink: 1; /* Chat can shrink if needed */
@@ -14,7 +19,7 @@
 }
 
 .top {
-  padding: 20px;
+  padding: 17px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -27,8 +32,87 @@
   gap: 20px;
 }
 
-.texts {
+.profile {
   display: flex;
   flex-direction: column;
-  gap: 5px;
+  gap: 6px;
+}
+
+.profile span {
+  font-size: 19px; /* Adjust this value as needed */
+  font-weight: bold; /* Optional: makes the text bold */
+  font-family: "Raleway", sans-serif;
+}
+
+.profile p {
+  font-size: 15px; /* Adjust this value as needed */
+  font-family: "Raleway", sans-serif;
+}
+
+.icons {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 18px;
+}
+
+.border {
+  border: 1px solid white;
+  height: 44px;
+  width: 44px;
+  padding: 4px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.icon {
+  height: 26px;
+  width: 26px;
+  cursor: pointer;
+}
+
+.bottom {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-top: 1px;
+}
+
+.bottom input {
+  background-color: black;
+  border: none;
+  outline: none;
+  font-family: "Raleway", sans-serif;
+  flex: 1;
+  color: white;
+  padding: 11px;
+  border-radius: 10px;
+}
+
+.sendButton {
+  background-color: black;
+  color: white;
+  padding: 10px 28px;
+  border: none;
+  outline: none;
+  border-radius: 5px;
+}
+
+.em {
+  height: 26px;
+  width: 26px;
+  cursor: pointer;
+}
+
+.pin {
+  width: 24px;
+  height: 24px;
+}
+
+.micro {
+  height: 22px;
+  width: 22px;
 }
