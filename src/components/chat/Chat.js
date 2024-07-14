@@ -11,6 +11,12 @@ import EmojiPicker from "emoji-picker-react";
 
 export default function Chat() {
   const [open, setOpen] = useState(false);
+  const [text, setText] = useState("");
+
+  const handleEmoji = (e) => {
+    setText((prev) => prev + e.emoji);
+    setOpen(false);
+  };
 
   return (
     <div className="chat">
@@ -43,8 +49,13 @@ export default function Chat() {
             onClick={() => setOpen((prev) => !prev)}
           />
         </div>
-        <EmojiPicker open={open} />
-        <input type="text" placeholder="Type a message" />
+        <EmojiPicker open={open} onEmojiClick={handleEmoji} />
+        <input
+          type="text"
+          placeholder="Type a message"
+          value={text}
+          onChange={(e) => setText(e.target.value)}
+        />
         <div className="icons">
           <GrAttachment className="pin" />
           <FaMicrophone className="micro" />
