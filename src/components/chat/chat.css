@@ -4,12 +4,14 @@
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
 
 .chat {
-  flex-grow: 2; /* Chat will take 2 parts of the available space */
-  flex-shrink: 1; /* Chat can shrink if needed */
-  flex-basis: 0; /* Initial size before space distribution */
+  flex-grow: 2;
+  flex-shrink: 1;
+  flex-basis: 0;
   border-left: 1px solid white;
-  border-right: 1px solif white;
-  height: 100%; /* Optional: Add borders for visualization */
+  border-right: 1px solid white;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 .user img {
@@ -39,13 +41,13 @@
 }
 
 .profile span {
-  font-size: 19px; /* Adjust this value as needed */
-  font-weight: bold; /* Optional: makes the text bold */
+  font-size: 19px;
+  font-weight: bold;
   font-family: "Raleway", sans-serif;
 }
 
 .profile p {
-  font-size: 15px; /* Adjust this value as needed */
+  font-size: 15px;
   font-family: "Raleway", sans-serif;
 }
 
@@ -74,45 +76,69 @@
 }
 
 .bottom {
-  padding: 20px;
+  padding: 14px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-top: 1px;
+  border-top: 1px solid white;
+  margin-top: auto;
 }
 
-.bottom input {
+.input-wrapper {
+  position: relative;
+  flex: 1;
+  display: flex;
+  align-items: center;
+}
+
+.input-wrapper .em {
+  position: absolute;
+  left: 10px;
+  height: 26px;
+  width: 26px;
+  cursor: pointer;
+}
+
+.input-wrapper input {
   background-color: black;
   border: none;
   outline: none;
   font-family: "Raleway", sans-serif;
   flex: 1;
   color: white;
-  padding: 11px;
+  padding: 15px;
+  padding-left: 50px; /* Add padding to make space for the emoji icon and gap */
   border-radius: 10px;
 }
 
-.sendButton {
-  background-color: black;
-  color: white;
-  padding: 10px 28px;
-  border: none;
-  outline: none;
-  border-radius: 5px;
-}
-
-.em {
-  height: 26px;
-  width: 26px;
+.input-wrapper .pin,
+.input-wrapper .micro,
+.input-wrapper .send {
+  position: absolute;
   cursor: pointer;
+  right: 10px;
 }
 
-.pin {
-  width: 24px;
-  height: 24px;
+.input-wrapper .pin {
+  right: 100px;
 }
 
-.micro {
-  height: 22px;
-  width: 22px;
+.input-wrapper .micro {
+  right: 58px;
+}
+
+.input-wrapper .send {
+  right: 20px;
+}
+
+.emoji .picker {
+  position: absolute;
+  bottom: 60px; /* Adjust to position the picker above the input field */
+  left: 0;
+}
+
+.center {
+  padding: 20px;
+  flex: 1;
+  border: 1px solid white;
 }

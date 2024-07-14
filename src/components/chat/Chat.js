@@ -7,6 +7,7 @@ import { BsInfoCircle } from "react-icons/bs";
 import { MdEmojiEmotions } from "react-icons/md";
 import { GrAttachment } from "react-icons/gr";
 import { FaMicrophone } from "react-icons/fa";
+import { RiSendPlaneFill } from "react-icons/ri";
 import EmojiPicker from "emoji-picker-react";
 
 export default function Chat() {
@@ -43,24 +44,29 @@ export default function Chat() {
       <div className="center"></div>
 
       <div className="bottom">
-        <div className="emoji">
+        <div className="input-wrapper">
           <MdEmojiEmotions
             className="em"
             onClick={() => setOpen((prev) => !prev)}
           />
-        </div>
-        <EmojiPicker open={open} onEmojiClick={handleEmoji} />
-        <input
-          type="text"
-          placeholder="Type a message"
-          value={text}
-          onChange={(e) => setText(e.target.value)}
-        />
-        <div className="icons">
+          <input
+            type="text"
+            placeholder="Type a message"
+            value={text}
+            onChange={(e) => setText(e.target.value)}
+          />
           <GrAttachment className="pin" />
           <FaMicrophone className="micro" />
+          <RiSendPlaneFill className="send" />
+
+          <div className="emoji">
+            {open && (
+              <div className="picker">
+                <EmojiPicker onEmojiClick={handleEmoji} />
+              </div>
+            )}
+          </div>
         </div>
-        <button className="sendButton">Send</button>
       </div>
     </div>
   );
