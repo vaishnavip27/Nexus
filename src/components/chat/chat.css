@@ -2,5 +2,33 @@
   flex-grow: 2; /* Chat will take 2 parts of the available space */
   flex-shrink: 1; /* Chat can shrink if needed */
   flex-basis: 0; /* Initial size before space distribution */
-  border: 1px solid #ccc; /* Optional: Add borders for visualization */
+  border-left: 1px solid white;
+  border-right: 1px solif white;
+  height: 100%; /* Optional: Add borders for visualization */
+}
+
+.user img {
+  height: 56px;
+  width: 56px;
+  object-fit: cover;
+}
+
+.top {
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid white;
+}
+
+.user {
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.texts {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
