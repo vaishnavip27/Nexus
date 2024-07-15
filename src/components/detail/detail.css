@@ -3,7 +3,7 @@
   flex-grow: 1; /* Detail will take 1 part of the available space */
   flex-shrink: 1; /* Detail can shrink if needed */
   flex-basis: 0; /* Initial size before space distribution */
-  border: 1px solid #ccc; /* Optional: Add borders for visualization */
+  border: 1px solid #565656; /* Optional: Add borders for visualization */
   font-family: "Noto Sans", sans-serif;
 
   .p-user {

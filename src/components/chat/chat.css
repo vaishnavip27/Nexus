@@ -4,8 +4,8 @@
   flex-grow: 2;
   flex-shrink: 1;
   flex-basis: 0;
-  border-left: 1px solid white;
-  border-right: 1px solid white;
+  border-left: 1px solid rgb(98, 98, 98);
+  border-right: 1px solid rgb(88, 88, 88);
   height: 100%;
   display: flex;
   flex-direction: column;
@@ -22,7 +22,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-bottom: 1px solid white;
+  border-bottom: 1px solid rgb(81, 81, 81);
 }
 
 .user {
@@ -56,7 +56,7 @@
 }
 
 .border {
-  border: 1px solid white;
+  border: 1px solid rgb(92, 92, 92);
   height: 44px;
   width: 44px;
   padding: 4px;
@@ -77,7 +77,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  border-top: 1px solid white;
+  border-top: 1px solid rgb(57, 57, 57);
   margin-top: auto;
 }
 
@@ -137,7 +137,7 @@
 .center {
   padding: 20px;
   flex: 1;
-  border: 1px solid white;
+  border: 1px solid rgb(67, 67, 67);
   background-color: black;
   overflow: scroll;
   display: flex;
@@ -174,9 +174,8 @@
       }
 
       p {
-        padding: 20px;
+        padding: 18px;
         background-color: #252b2e;
-        border-radius: 10px;
       }
 
       span {
@@ -187,12 +186,24 @@
 }
 
 .message img {
-  width: 48px;
-  height: 48px;
+  width: 45px;
+  height: 45px;
   object-fit: cover;
 }
 
 .texts p,
 .texts span {
   font-family: "Noto Sans", sans-serif;
+}
+
+.texts p {
+  font-weight: 500;
+}
+
+.own .texts p {
+  border-radius: 25px 25px 0px 25px;
+}
+
+.them .texts p {
+  border-radius: 0px 25px 25px 25px;
 }

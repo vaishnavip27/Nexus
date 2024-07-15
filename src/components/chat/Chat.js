@@ -45,7 +45,7 @@ export default function Chat() {
 
       {/* the message section */}
       <div className="center">
-        <div className="message">
+        <div className="message them">
           <img src={userImg} alt="image" />
           <div className="texts">
             <p>
@@ -68,7 +68,7 @@ export default function Chat() {
           </div>
         </div>
 
-        <div className="message">
+        <div className="message them">
           <img src={userImg} alt="image" />
           <div className="texts">
             <p>
@@ -91,7 +91,7 @@ export default function Chat() {
           </div>
         </div>
 
-        <div className="message">
+        <div className="message them">
           <img src={userImg} alt="image" />
           <div className="texts">
             <p>
