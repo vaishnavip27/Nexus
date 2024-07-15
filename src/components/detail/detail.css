@@ -1,11 +1,98 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300..800;1,300..800&display=swap");
+
 .detail {
   flex-grow: 1; /* Detail will take 1 part of the available space */
   flex-shrink: 1; /* Detail can shrink if needed */
   flex-basis: 0; /* Initial size before space distribution */
   border: 1px solid #ccc; /* Optional: Add borders for visualization */
+  font-family: "Inter", sans-serif;
+
+  .p-user {
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+
+    p {
+      font-size: 16px;
+      margin-bottom: 6px;
+    }
+
+    h3 {
+      margin-top: 8px;
+    }
+
+    img {
+      height: 100px;
+      width: 100px;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+  }
+
+  .info {
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .option {
+      .title {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 2px;
+        margin-left: 10px;
+
+        .up-arrow,
+        .arrow-down {
+          height: 18px;
+          width: 18px;
+          border-radius: 50%;
+          margin-right: 15px;
+          cursor: pointer;
+        }
+      }
+
+      .photos {
+        display: flex;
+        justify-items: center;
+        padding: 10px;
+
+        .photoItem {
+          flex-wrap: wrap;
+          display: flex;
+          gap: 10px;
+          max-width: 660px;
+
+          .photo-detail {
+            width: 100px;
+            height: 100px;
+            box-sizing: border-box;
+
+            img {
+              width: 100%;
+              height: 100%;
+              display: block;
+              object-fit: cover;
+              border-radius: 5px;
+            }
+          }
+        }
+      }
+    }
+  }
 }
 
-.p-user img {
-  height: 130px;
-  width: 130px;
+.photo-detail span,
+.title span,
+.p-user h3,
+.p-user p {
+  font-family: "Inter", sans-serif;
+}
+
+.title span {
+  font-size: 18px;
 }
