@@ -141,4 +141,60 @@
   padding: 20px;
   flex: 1;
   border: 1px solid white;
+  overflow: scroll;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  scrollbar-width: none;
+
+  .message {
+    max-width: 70%;
+    display: flex;
+    gap: 20px;
+
+    &.own {
+      align-self: flex-end;
+
+      .texts {
+        p {
+          background-color: blue;
+        }
+      }
+    }
+
+    .texts {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+
+      img {
+        width: 100%;
+        height: 300px;
+        border-radius: 10px;
+        object-fit: cover;
+      }
+
+      p {
+        padding: 20px;
+        background-color: green;
+        border-radius: 10px;
+      }
+
+      span {
+        font-size: 13px;
+      }
+    }
+  }
+}
+
+.message img {
+  width: 48px;
+  height: 48px;
+  object-fit: cover;
+}
+
+.texts p,
+.texts span {
+  font-family: "Raleway", sans-serif;
 }
