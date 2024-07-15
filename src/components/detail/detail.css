@@ -4,3 +4,8 @@
   flex-basis: 0; /* Initial size before space distribution */
   border: 1px solid #ccc; /* Optional: Add borders for visualization */
 }
+
+.p-user img {
+  height: 130px;
+  width: 130px;
+}
