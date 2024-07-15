@@ -17,15 +17,6 @@ export default function Detail() {
       <div className="info">
         <div className="option">
           <div className="title">
-            <span>About</span>
-            <IoIosArrowUp className="up-arrow" />
-          </div>
-        </div>
-      </div>
-
-      <div className="info">
-        <div className="option">
-          <div className="title">
             <span>Medis, Files and Links</span>
             <IoIosArrowDown className="arrow-down" />
           </div>
@@ -51,15 +42,6 @@ export default function Detail() {
                 <img src={photoImg} alt="pic" />
               </div>
             </div>
-          </div>
-        </div>
-      </div>
-
-      <div className="info">
-        <div className="option">
-          <div className="title">
-            <span>Privacy and Support</span>
-            <IoIosArrowUp className="up-arrow" />
           </div>
         </div>
       </div>

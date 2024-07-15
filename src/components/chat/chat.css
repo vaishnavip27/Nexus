@@ -1,7 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans:ital,opsz,wght@0,6..12,200..1000;1,6..12,200..1000&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&display=swap");
 
 .chat {
   flex-grow: 2;
@@ -43,12 +40,12 @@
 .profile span {
   font-size: 19px;
   font-weight: bold;
-  font-family: "Raleway", sans-serif;
+  font-family: "Noto Sans", sans-serif;
 }
 
 .profile p {
   font-size: 15px;
-  font-family: "Raleway", sans-serif;
+  font-family: "Noto Sans", sans-serif;
 }
 
 .icons {
@@ -103,7 +100,7 @@
   background-color: black;
   border: none;
   outline: none;
-  font-family: "Raleway", sans-serif;
+  font-family: "Noto Sans", sans-serif;
   flex: 1;
   color: white;
   padding: 15px;
@@ -141,6 +138,7 @@
   padding: 20px;
   flex: 1;
   border: 1px solid white;
+  background-color: black;
   overflow: scroll;
   display: flex;
   flex-direction: column;
@@ -157,7 +155,7 @@
 
       .texts {
         p {
-          background-color: blue;
+          background-color: #6e85b7;
         }
       }
     }
@@ -177,7 +175,7 @@
 
       p {
         padding: 20px;
-        background-color: green;
+        background-color: #252b2e;
         border-radius: 10px;
       }
 
@@ -196,5 +194,5 @@
 
 .texts p,
 .texts span {
-  font-family: "Raleway", sans-serif;
+  font-family: "Noto Sans", sans-serif;
 }
