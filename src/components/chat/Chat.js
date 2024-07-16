@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "./chat.css";
 import userImg from "../../pictures/profile-2.png";
 import sceneImg from "../../pictures/scenery.jpg";
@@ -14,6 +14,12 @@ import EmojiPicker from "emoji-picker-react";
 export default function Chat() {
   const [open, setOpen] = useState(false);
   const [text, setText] = useState("");
+
+  const endRef = useRef(null);
+
+  useEffect(() => {
+    endRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, []);
 
   const handleEmoji = (e) => {
     setText((prev) => prev + e.emoji);
@@ -114,6 +120,7 @@ export default function Chat() {
             <span>1 min ago</span>
           </div>
         </div>
+        <div ref={endRef}></div>
       </div>
 
       {/* message send container */}

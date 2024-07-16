@@ -43,6 +43,7 @@ export default function Detail() {
               </div>
             </div>
           </div>
+          <button className="logout">Log out</button>
         </div>
       </div>
     </div>
