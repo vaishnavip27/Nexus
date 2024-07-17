@@ -10,6 +10,7 @@ import Detail from "./components/detail/Detail";
 import List from "./components/list/List";
 import SignUp from "./components/signup/SignUp";
 import LoginPage from "./components/login/LoginPage";
+import Notification from "./components/notification/Notification";
 
 function App() {
   const user = false;
@@ -35,6 +36,7 @@ function App() {
             }
           />
         </Routes>
+        <Notification />
       </div>
     </Router>
   );

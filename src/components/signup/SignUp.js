@@ -1,7 +1,12 @@
 import "./signup.css";
 import { Link } from "react-router-dom";
+import { ToastContainer, toast } from "react-toastify";
 
 export default function SignUp() {
+  const handleLogin = (e) => {
+    e.preventDefault();
+  };
+
   return (
     <div className="signup-container">
       <div className="head-container">
@@ -9,7 +14,7 @@ export default function SignUp() {
       </div>
 
       <div className="form-container">
-        <form>
+        <form onSubmit={handleLogin}>
           <div className="form-group">
             <label for="fname">Name</label>
             <br />
@@ -25,15 +30,18 @@ export default function SignUp() {
             <br />
             <input type="password" id="password" name="password" />
           </div>
-          <input type="radio" id="fp" name="fp" value="Forgot password?" />
-          <label for="fp">Forgot password?</label>
+          <div className="fp">
+            <label for="fp">Forgot password?</label>
+          </div>
           <br />
-
-          <button>Signup</button>
+          <div className="btn">
+            <button className="signup">Signup</button>
+          </div>
           <br />
-          <span>Already a member? </span>
-          <br />
-          <Link to="/Login">Log In</Link>
+          <span className="login-text">Already a member? </span>
+          <Link to="/Login" className="login-link">
+            Log In
+          </Link>
         </form>
       </div>
     </div>

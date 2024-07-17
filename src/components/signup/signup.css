@@ -19,6 +19,9 @@ body {
   padding: 1rem;
   box-sizing: border-box;
   border: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
 .head-container {
@@ -39,4 +42,67 @@ body {
   align-items: center;
   flex-direction: center;
   width: 100%;
+}
+
+.form-group {
+  margin-top: 10px;
+  padding-left: 50px;
+}
+
+.form-group label {
+  font-size: 17px;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group input[type="password"] {
+  width: 100%;
+  border: 1px solid white;
+  outline: none;
+  background-color: black;
+  padding: 12px 90px;
+  border-radius: 10px;
+  box-sizing: border-box;
+}
+
+.fp {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+label[for="fp"] {
+  font-size: 17px;
+  margin-top: 15px;
+  cursor: pointer;
+}
+
+.btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+button {
+  padding: 13px 163px;
+  border: 1px solid white;
+  background-color: black;
+  color: white;
+  font-size: 16px;
+  margin-left: 41px;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.login-text,
+.login-link {
+  font-size: 17px;
+}
+
+.login-text {
+  margin-left: 7rem;
+}
+
+.login-link {
+  color: rgb(201, 0, 201);
 }
