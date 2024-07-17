@@ -1,24 +1,33 @@
 import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 import Chat from "./components/chat/Chat";
 import Detail from "./components/detail/Detail";
 import List from "./components/list/List";
-import Login from "./components/login/Login";
+import SignUp from "./components/signup/SignUp";
+import LoginPage from "./components/login/LoginPage";
 
 function App() {
   const user = false;
 
   return (
-    <div className="container">
-      {user ? (
-        <>
-          <List />
-          <Chat />
-          <Detail />
-        </>
-      ) : (
-        <Login />
-      )}
-    </div>
+    <Router>
+      <div className="container">
+        <Routes>
+          <Route path="/login" component={LoginPage} />
+          <Route path="/">
+            {user ? (
+              <>
+                <List />
+                <Chat />
+                <Detail />
+              </>
+            ) : (
+              <SignUp />
+            )}
+          </Route>
+        </Routes>
+      </div>
+    </Router>
   );
 }
 
