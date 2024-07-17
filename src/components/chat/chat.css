@@ -176,6 +176,7 @@
       p {
         padding: 18px;
         background-color: #252b2e;
+        font-size: 16px;
       }
 
       span {
@@ -194,10 +195,6 @@
 .texts p,
 .texts span {
   font-family: "Noto Sans", sans-serif;
-}
-
-.texts p {
-  font-weight: 500;
 }
 
 .own .texts p {

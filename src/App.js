@@ -2,13 +2,22 @@ import React from "react";
 import Chat from "./components/chat/Chat";
 import Detail from "./components/detail/Detail";
 import List from "./components/list/List";
+import Login from "./components/login/Login";
 
 function App() {
+  const user = false;
+
   return (
     <div className="container">
-      <List />
-      <Chat />
-      <Detail />
+      {user ? (
+        <>
+          <List />
+          <Chat />
+          <Detail />
+        </>
+      ) : (
+        <Login />
+      )}
     </div>
   );
 }
