@@ -18,25 +18,25 @@ function App() {
   return (
     <Router>
       <div className="container">
-        <Routes>
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/signup" element={<SignUp />} />
-          <Route
-            path="/"
-            element={
-              user ? (
-                <>
-                  <List />
-                  <Chat />
-                  <Detail />
-                </>
-              ) : (
-                <Navigate to="/signup" replace />
-              )
-            }
-          />
-        </Routes>
-        <Notification />
+        {user ? (
+          <>
+            {/* These components are always rendered if the user is logged in */}
+            <List />
+            <Chat />
+            <Detail />
+            <Routes>
+              <Route path="/notification" element={<Notification />} />
+              <Route path="*" element={<Navigate to="/list" replace />} />
+            </Routes>
+          </>
+        ) : (
+          <Routes>
+            {/* If user is not logged in, redirect to SignUp page */}
+            <Route path="/signup" element={<SignUp />} />
+            <Route path="/login" element={<LoginPage />} />
+            <Route path="*" element={<Navigate to="/signup" replace />} />
+          </Routes>
+        )}
       </div>
     </Router>
   );
