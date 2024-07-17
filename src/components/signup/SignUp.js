@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 export default function SignUp() {
   return (
-    <div className="login-container">
+    <div className="signup-container">
       <div className="head-container">
         <span>Nexus</span>
       </div>
@@ -30,8 +30,10 @@ export default function SignUp() {
           <br />
 
           <button>Signup</button>
+          <br />
           <span>Already a member? </span>
-          <Link to="/Login"></Link>
+          <br />
+          <Link to="/Login">Log In</Link>
         </form>
       </div>
     </div>
