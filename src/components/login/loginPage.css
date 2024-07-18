@@ -19,15 +19,45 @@ body {
   padding: 1rem;
   box-sizing: border-box;
   border: 1px solid white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.head-container-2 {
+.head-container {
   display: flex;
   align-items: center;
   justify-content: center;
   width: 100%;
 
   span {
+    font-size: 35px;
     font-family: "Noto Sans", sans-serif;
+    font-weight: 500;
   }
+}
+
+.form-container {
+  width: 100%;
+}
+
+.form-group {
+  margin-top: 10px;
+  padding-left: 50px;
+}
+
+.form-group label {
+  font-size: 17px;
+}
+
+.form-group input[type="email"],
+.form-group input[type="password"] {
+  width: 100%;
+  border: 1px solid white;
+  outline: none;
+  background-color: black;
+  padding: 12px 90px;
+  color: white;
+  border-radius: 10px;
+  box-sizing: border-box;
 }
