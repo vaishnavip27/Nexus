@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import "./userInfo.css";
 import { LuSearch } from "react-icons/lu";
 import { HiPlus, HiMinus } from "react-icons/hi";
+import AddUser from "./addUser/addUser";
 
 export default function Userinfo() {
   const [addMode, setAddMode] = useState(false);
@@ -22,6 +23,7 @@ export default function Userinfo() {
           <HiPlus className="plus" onClick={toggleMode} />
         )}
       </div>
+      {addMode && <AddUser />}
     </div>
   );
 }
