@@ -18,12 +18,10 @@ body {
   align-items: center;
   background-color: transparent;
   flex-direction: column;
-  border: 1px solid white;
 }
 
 .head {
   width: auto;
-  border: 1px solid white;
   font-size: 32px;
   font-weight: 600;
 }
@@ -69,6 +67,44 @@ button {
 }
 
 .g-icon {
-  height: 32px;
-  width: 32px;
+  height: 26px;
+  width: 26px;
+  margin-right: 18px;
+}
+
+.or-container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  margin-top: 30px;
+}
+
+.or-container .line {
+  width: 174px;
+  height: 1px;
+  background-color: white;
+}
+
+button .account {
+  background-color: white;
+}
+
+.login {
+  font-size: 17px;
+  font-weight: 500;
+}
+
+.login-link {
+  font-size: 17px;
+  font-weight: 500;
+  color: green;
+}
+
+.link-container {
+  margin-top: 10px;
+}
+
+.or {
+  font-size: 18px;
 }

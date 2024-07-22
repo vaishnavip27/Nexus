@@ -1,5 +1,6 @@
 import "./signup.css";
 import googleIcon from "../../pictures/googleIcon.png";
+import { Link } from "react-router-dom";
 
 export default function SignUp() {
   return (
@@ -11,6 +12,12 @@ export default function SignUp() {
           <img src={googleIcon} alt="icon" className="g-icon" />
           Sign in with Google
         </button>
+
+        <div className="or-container">
+          <div className="line"></div>
+          <div className="or">OR</div>
+          <div className="line"></div>
+        </div>
 
         <form>
           <div className="form-group">
@@ -40,6 +47,15 @@ export default function SignUp() {
             />
           </div>
         </form>
+
+        <button className="account ">Create Account</button>
+
+        <div className="link-container">
+          <span class="login">Already have an account? </span>
+          <Link to="/login" className="login-link">
+            Log in
+          </Link>
+        </div>
       </div>
     </div>
   );
