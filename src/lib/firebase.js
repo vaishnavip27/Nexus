@@ -4,7 +4,7 @@ import { getFirestore } from "firebase/firestore";
 import { getStorage } from "firebase/storage";
 
 const firebaseConfig = {
-  apiKey: "import.meta.env.REACT_APP_API_KEY",
+  apiKey: "AIzaSyC77blI3pKHm4icudAe25ZA1pfKgfObtQ4",
   authDomain: "nexus-ddec7.firebaseapp.com",
   projectId: "nexus-ddec7",
   storageBucket: "nexus-ddec7.appspot.com",

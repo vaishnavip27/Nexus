@@ -43,7 +43,7 @@ export default function Detail() {
               </div>
             </div>
           </div>
-          <button className="logout bg-red-500 hover:bg-red-300 py-2 px-4 w-64 ml-2 mt-40">
+          <button className="logout bg-red-500 hover:bg-red-300 py-2 px-4 w-64 ml-2 mt-40 border-none outline-none">
             Log out
           </button>
         </div>

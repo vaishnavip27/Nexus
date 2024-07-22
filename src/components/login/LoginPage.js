@@ -1,8 +1,24 @@
 import "./loginPage.css";
 import googleIcon from "../../pictures/googleIcon.png";
 import { Link } from "react-router-dom";
+import { signInWithEmailAndPassword } from "firebase/auth";
 
 export default function LoginPage() {
+  const handleLogin = async (e) => {
+    e.preventDefault();
+    const formData = new FormData(e.target);
+    const { email, password } = Object.fromEntries(formData);
+
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      toast.success("Logged in successfully!");
+    } catch (error) {
+      console.log(error);
+      toast.error(error.message);
+    } finally {
+      setLoading(false);
+    }
+  };
   return (
     <div className="main-container">
       <div className="login-container">
@@ -20,7 +36,7 @@ export default function LoginPage() {
           <div className="line"></div>
         </div>
 
-        <form>
+        <form onSubmit={handleLogin}>
           <div className="form-group">
             <label for="name">Email</label>
             <input
@@ -39,17 +55,17 @@ export default function LoginPage() {
               placeholder="Enter password"
             />
           </div>
+
+          <div className="remember-container">
+            <label>
+              <input type="checkbox" name="remember" className="checkbox" />
+              <span className="rm">Remember me</span>
+            </label>
+            <span className="fp">Forgot password?</span>
+          </div>
+
+          <button className="login-button">Log In</button>
         </form>
-
-        <div className="remember-container">
-          <label>
-            <input type="checkbox" name="remember" className="checkbox" />
-            <span className="rm">Remember me</span>
-          </label>
-          <span className="fp">Forgot password?</span>
-        </div>
-
-        <button className="login-button">Log In</button>
 
         <div className="link-container">
           <span class="login">Don't have an account? </span>
