@@ -43,7 +43,9 @@ export default function Detail() {
               </div>
             </div>
           </div>
-          <button className="logout">Log out</button>
+          <button className="logout bg-red-500 hover:bg-red-300 py-2 px-4 w-64 ml-2 mt-40">
+            Log out
+          </button>
         </div>
       </div>
     </div>

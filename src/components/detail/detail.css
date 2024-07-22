@@ -97,18 +97,3 @@
 .title span {
   font-size: 18px;
 }
-
-.logout {
-  padding: 14px 130px;
-  background-color: rgb(211, 6, 98);
-  color: white;
-  border: none;
-  border-radius: 6px;
-  cursor: pointer;
-  margin-left: 12px;
-  margin-top: 209px;
-}
-
-button:hover {
-  background-color: rgb(137, 0, 62);
-}
