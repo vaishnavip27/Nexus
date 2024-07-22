@@ -1,32 +1,45 @@
 import "./signup.css";
+import googleIcon from "../../pictures/googleIcon.png";
 
 export default function SignUp() {
   return (
-    <div>
-      <h1 className="text-5xl font-semibold">Welcome back</h1>
-      <p className="font-medium text-lg text-gray-500 mt-4">
-        Welcome back! Please enter your details
-      </p>
-      <div className="mt-8">
-        <div>
-          <label className="text-lg font-medium">Email</label>
-          <input className="" placeholder="Enter your email" />
-        </div>
-        <div>
-          <label>Password</label>
-          <input
-            className=""
-            placeholder="Enter your password"
-            type="password"
-          />
-        </div>
-        <div>
-          <div>
-            <input type="checkbox" id="remember" />
-            <label for="remember">Remember me</label>
+    <div className="main-container">
+      <div className="signup-container">
+        <div className="head">Create account</div>
+
+        <button>
+          <img src={googleIcon} alt="icon" className="g-icon" />
+          Sign in with Google
+        </button>
+
+        <form>
+          <div className="form-group">
+            <label for="name">Name</label>
+            <input
+              type="text"
+              id="username"
+              name="username"
+              placeholder="Enter your name"
+            />
           </div>
-          <button>Forgot password</button>
-        </div>
+          <div className="form-group">
+            <label for="email">Email</label>
+            <input
+              type="email"
+              id="email"
+              name="email"
+              placeholder="Enter your email"
+            />
+          </div>
+          <div className="form-group">
+            <label for="name">Password</label>
+            <input
+              type="password"
+              id="password"
+              placeholder="Enter your password"
+            />
+          </div>
+        </form>
       </div>
     </div>
   );
