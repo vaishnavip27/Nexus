@@ -3,9 +3,9 @@ import "./loginPage.css";
 import googleIcon from "../../pictures/googleIcon.png";
 import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
-import { toast } from "react-toastify"; // Assuming you're using react-toastify for notifications
+import { auth } from "../../lib/firebase";
 
-export default function LoginPage() {
+export default function LoginPage({ onLoginSuccess }) {
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
 
@@ -17,11 +17,10 @@ export default function LoginPage() {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      toast.success("Logged in successfully!");
-      navigate("/list");
+      onLoginSuccess();
+      navigate("/dashboard");
     } catch (error) {
       console.log(error);
-      toast.error(error.message);
     } finally {
       setLoading(false);
     }

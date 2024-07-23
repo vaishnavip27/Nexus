@@ -11,6 +11,7 @@ import List from "./components/list/List";
 import SignUp from "./components/signup/SignUp";
 import LoginPage from "./components/login/LoginPage";
 import Notification from "./components/notification/Notification";
+import Dashboard from "./components/Dashboard";
 
 function App() {
   const [user, setUser] = useState(false);
@@ -19,25 +20,19 @@ function App() {
     <Router>
       <div className="container">
         {user ? (
-          <>
-            {/* These components are always rendered if the user is logged in */}
-            <List />
-            <Chat />
-            <Detail />
-            <Routes>
-              <Route path="/notification" element={<Notification />} />
-              <Route path="*" element={<Navigate to="/list" replace />} />
-            </Routes>
-          </>
+          <Routes>
+            <Route path="/dashboard" element={<Dashboard />} />
+            <Route path="/notification" element={<Notification />} />
+            <Route path="*" element={<Navigate to="/dashboard" replace />} />
+          </Routes>
         ) : (
           <Routes>
-            {/* If user is not logged in, redirect to SignUp page */}
             <Route path="/signup" element={<SignUp />} />
             <Route
               path="/login"
               element={<LoginPage onLoginSuccess={() => setUser(true)} />}
             />
-            <Route path="*" element={<Navigate to="/signup" replace />} />
+            <Route path="*" element={<Navigate to="/login" replace />} />
           </Routes>
         )}
       </div>
