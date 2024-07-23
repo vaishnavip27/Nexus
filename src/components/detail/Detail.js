@@ -4,6 +4,7 @@ import profileImg from "../../pictures/profile-1.png";
 import { IoIosArrowUp } from "react-icons/io";
 import { IoIosArrowDown } from "react-icons/io";
 import photoImg from "../../pictures/scenery.jpg";
+import { auth } from "../../lib/firebase";
 
 export default function Detail() {
   return (
@@ -17,7 +18,7 @@ export default function Detail() {
       <div className="info">
         <div className="option">
           <div className="title">
-            <span>Medis, Files and Links</span>
+            <span>Medias, Files and Links</span>
             <IoIosArrowDown className="arrow-down" />
           </div>
 
@@ -43,7 +44,10 @@ export default function Detail() {
               </div>
             </div>
           </div>
-          <button className="logout bg-red-500 hover:bg-red-300 py-2 px-4 w-64 ml-2 mt-40 border-none outline-none">
+          <button
+            className="logout bg-red-500 hover:bg-red-300 py-2 px-4 w-64 ml-2 mt-40 border-none outline-none"
+            onClick={() => auth.signOut()}
+          >
             Log out
           </button>
         </div>

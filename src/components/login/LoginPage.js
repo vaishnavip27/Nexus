@@ -18,7 +18,6 @@ export default function LoginPage({ onLoginSuccess }) {
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
-      onLoginSuccess();
       toast.success("Logged in successfully");
       navigate("/dashboard");
     } catch (error) {

@@ -11,22 +11,31 @@ import Notification from "./components/notification/Notification";
 import Dashboard from "./components/Dashboard";
 import { onAuthStateChanged } from "firebase/auth";
 import { auth } from "./lib/firebase";
+import { useUserStore } from "./lib/userStore";
 
 function App() {
+  const { currentUser, isLoading, fetchUserInfo } = useUserStore();
+
   useEffect(() => {
     const unSub = onAuthStateChanged(auth, (user) => {
-      console.log(user);
+      if (user) {
+        fetchUserInfo(user?.uid);
+      } else {
+        fetchUserInfo(null);
+      }
     });
 
     return () => {
       unSub();
     };
-  }, []);
+  }, [fetchUserInfo]);
+
+  if (isLoading) return <div className="loading">Loading...</div>;
 
   return (
     <Router>
       <div className="container">
-        {user ? (
+        {currentUser ? (
           <Routes>
             <Route path="/dashboard" element={<Dashboard />} />
             <Route path="/notification" element={<Notification />} />
@@ -35,10 +44,7 @@ function App() {
         ) : (
           <Routes>
             <Route path="/signup" element={<SignUp />} />
-            <Route
-              path="/login"
-              element={<LoginPage onLoginSuccess={() => setUser(true)} />}
-            />
+            <Route path="/login" element={<LoginPage />} />
             <Route path="*" element={<Navigate to="/login" replace />} />
           </Routes>
         )}
