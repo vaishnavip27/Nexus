@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
@@ -13,7 +13,7 @@ import LoginPage from "./components/login/LoginPage";
 import Notification from "./components/notification/Notification";
 
 function App() {
-  const user = false;
+  const [user, setUser] = useState(false);
 
   return (
     <Router>
@@ -33,7 +33,10 @@ function App() {
           <Routes>
             {/* If user is not logged in, redirect to SignUp page */}
             <Route path="/signup" element={<SignUp />} />
-            <Route path="/login" element={<LoginPage />} />
+            <Route
+              path="/login"
+              element={<LoginPage onLoginSuccess={() => setUser(true)} />}
+            />
             <Route path="*" element={<Navigate to="/signup" replace />} />
           </Routes>
         )}

@@ -1,17 +1,24 @@
+import React, { useState } from "react";
 import "./loginPage.css";
 import googleIcon from "../../pictures/googleIcon.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
+import { toast } from "react-toastify"; // Assuming you're using react-toastify for notifications
 
 export default function LoginPage() {
+  const [loading, setLoading] = useState(false);
+  const navigate = useNavigate();
+
   const handleLogin = async (e) => {
     e.preventDefault();
+    setLoading(true);
     const formData = new FormData(e.target);
     const { email, password } = Object.fromEntries(formData);
 
     try {
       await signInWithEmailAndPassword(auth, email, password);
       toast.success("Logged in successfully!");
+      navigate("/list");
     } catch (error) {
       console.log(error);
       toast.error(error.message);
@@ -19,6 +26,7 @@ export default function LoginPage() {
       setLoading(false);
     }
   };
+
   return (
     <div className="main-container">
       <div className="login-container">
@@ -38,21 +46,23 @@ export default function LoginPage() {
 
         <form onSubmit={handleLogin}>
           <div className="form-group">
-            <label htmlFor="name">Email</label>
+            <label htmlFor="email">Email</label>
             <input
               type="email"
               id="email"
               name="email"
               placeholder="Enter email"
+              required
             />
           </div>
           <div className="form-group">
-            <label htmlFor="email">Password</label>
+            <label htmlFor="password">Password</label>
             <input
               type="password"
               id="password"
               name="password"
               placeholder="Enter password"
+              required
             />
           </div>
 
@@ -64,7 +74,9 @@ export default function LoginPage() {
             <span className="fp">Forgot password?</span>
           </div>
 
-          <button className="login-button">Log In</button>
+          <button className="login-button" disabled={loading}>
+            {loading ? "Logging in..." : "Log In"}
+          </button>
         </form>
 
         <div className="link-container">
