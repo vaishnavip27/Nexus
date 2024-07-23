@@ -38,7 +38,7 @@ export default function LoginPage() {
 
         <form onSubmit={handleLogin}>
           <div className="form-group">
-            <label for="name">Email</label>
+            <label htmlFor="name">Email</label>
             <input
               type="email"
               id="email"
@@ -47,7 +47,7 @@ export default function LoginPage() {
             />
           </div>
           <div className="form-group">
-            <label for="email">Password</label>
+            <label htmlFor="email">Password</label>
             <input
               type="password"
               id="password"
@@ -68,7 +68,7 @@ export default function LoginPage() {
         </form>
 
         <div className="link-container">
-          <span class="login">Don't have an account? </span>
+          <span id="login">Don't have an account? </span>
           <Link to="/SignUp" className="login-link">
             Create an account
           </Link>
