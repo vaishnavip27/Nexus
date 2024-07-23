@@ -1,7 +1,7 @@
 .addUser {
   width: max-content;
   height: max-content;
-  padding: 30px;
+  padding: 40px;
   background-color: rgba(0, 0, 0, 0.926);
   border-radius: 10px;
   position: absolute;
@@ -15,7 +15,7 @@
     gap: 8px;
 
     input {
-      padding: 14px;
+      padding: 8px 30px;
       border-radius: 10px;
       border: 1px solid rgb(54, 54, 54);
       background-color: rgb(16, 16, 16);
@@ -51,7 +51,7 @@
     }
 
     button {
-      padding: 14px;
+      padding: 14 10px;
       border-radius: 10px;
       background-color: blue;
       color: white;

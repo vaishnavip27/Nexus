@@ -1,20 +1,27 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   BrowserRouter as Router,
   Route,
   Routes,
   Navigate,
 } from "react-router-dom";
-import Chat from "./components/chat/Chat";
-import Detail from "./components/detail/Detail";
-import List from "./components/list/List";
 import SignUp from "./components/signup/SignUp";
 import LoginPage from "./components/login/LoginPage";
 import Notification from "./components/notification/Notification";
 import Dashboard from "./components/Dashboard";
+import { onAuthStateChanged } from "firebase/auth";
+import { auth } from "./lib/firebase";
 
 function App() {
-  const [user, setUser] = useState(false);
+  useEffect(() => {
+    const unSub = onAuthStateChanged(auth, (user) => {
+      console.log(user);
+    });
+
+    return () => {
+      unSub();
+    };
+  }, []);
 
   return (
     <Router>

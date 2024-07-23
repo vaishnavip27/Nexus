@@ -4,6 +4,7 @@ import googleIcon from "../../pictures/googleIcon.png";
 import { Link, useNavigate } from "react-router-dom";
 import { signInWithEmailAndPassword } from "firebase/auth";
 import { auth } from "../../lib/firebase";
+import { toast } from "react-toastify";
 
 export default function LoginPage({ onLoginSuccess }) {
   const [loading, setLoading] = useState(false);
@@ -18,6 +19,7 @@ export default function LoginPage({ onLoginSuccess }) {
     try {
       await signInWithEmailAndPassword(auth, email, password);
       onLoginSuccess();
+      toast.success("Logged in successfully");
       navigate("/dashboard");
     } catch (error) {
       console.log(error);

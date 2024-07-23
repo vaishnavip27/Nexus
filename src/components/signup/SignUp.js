@@ -23,11 +23,19 @@ export default function SignUp() {
 
     try {
       const res = await createUserWithEmailAndPassword(auth, email, password);
-      await setDoc(doc(db, "users", res.user.uid), {
-        username,
-        email,
-        id: res.user.uid,
-      });
+
+      await Promise.all([
+        setDoc(doc(db, "users", res.user.uid), {
+          username,
+          email,
+          id: res.user.uid,
+        }),
+
+        setDoc(doc(db, "userchats", res.user.uid), {
+          chats: [],
+        }),
+      ]);
+
       navigate("/login"); // Redirect to login page after successful signup
     } catch (error) {
       console.log(error);
