@@ -10,16 +10,31 @@ import { GrAttachment } from "react-icons/gr";
 import { FaMicrophone } from "react-icons/fa";
 import { RiSendPlaneFill } from "react-icons/ri";
 import EmojiPicker from "emoji-picker-react";
+import { onSnapshot } from "firebase/firestore";
 
 export default function Chat() {
   const [open, setOpen] = useState(false);
   const [text, setText] = useState("");
+  const [chat, setChat] = useState();
 
   const endRef = useRef(null);
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
   }, []);
+
+  useEffect(() => {
+    const unSub = onSnapshot(
+      doc(db, "chats", "BgJIoAsolzleSnt21lKF"),
+      (res) => {
+        setChat(res.data());
+      }
+    );
+
+    return () => {
+      unSub();
+    };
+  });
 
   const handleEmoji = (e) => {
     setText((prev) => prev + e.emoji);

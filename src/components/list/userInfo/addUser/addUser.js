@@ -9,6 +9,8 @@ import {
   setDoc,
   where,
   doc,
+  updateDoc,
+  arrayUnion,
 } from "firebase/firestore";
 import { db } from "../../../../lib/firebase";
 import { useUserStore } from "../../../../lib/userStore";
@@ -37,7 +39,7 @@ export default function AddUser() {
 
   const handleAdd = async () => {
     const chatRef = collection(db, "chats");
-    const userchatRef = collection(db, "userchats");
+    const userChatsRef = collection(db, "userchats");
 
     try {
       const newChatRef = doc(chatRef);
@@ -47,11 +49,20 @@ export default function AddUser() {
         messages: [],
       });
 
-      await updateDoc(doc(userchatRef, user.id), {
+      await updateDoc(doc(userChatsRef, user.id), {
         chats: arrayUnion({
           chatId: newChatRef.id,
           lastMessage: "",
           receiverId: currentUser.id,
+          updatedAt: Date.now(),
+        }),
+      });
+
+      await updateDoc(doc(userChatsRef, currentUser.id), {
+        chats: arrayUnion({
+          chatId: newChatRef.id,
+          lastMessage: "",
+          receiverId: user.id,
           updatedAt: Date.now(),
         }),
       });
