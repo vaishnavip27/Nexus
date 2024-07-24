@@ -1,65 +1,29 @@
+import React from "react";
 import "./chatList.css";
 import pfImage from "../../../pictures/profile-2.png";
-import AddUser from "../userInfo/addUser/addUser";
 
-export default function ChatList() {
+export default function ChatList({ chats }) {
+  const handleSearch = async (e) => {
+    e.preventDefault();
+    const formData = new FormData();
+    const username = formData.get("username");
+
+    try {
+    } catch (error) {
+      console.log(error);
+    }
+  };
   return (
     <div className="ChatList">
-      <div className="item">
-        <img src={pfImage} alt="profile-1" className="pfp" />
-        <div className="texts">
-          <span>Vaishnavi Patil</span>
-          <p>Hello there!</p>
+      {chats.map((chat) => (
+        <div className="item" key={chat.chatId}>
+          <img src={pfImage} alt="profile" className="pfp" />
+          <div className="texts">
+            <span>{chat.user.username}</span>
+            <p>{chat.lastMessage}</p>
+          </div>
         </div>
-      </div>
-
-      <div className="item">
-        <img src={pfImage} alt="profile-1" className="pfp" />
-        <div className="texts">
-          <span>Vaishnavi Patil</span>
-          <p>Hello there!</p>
-        </div>
-      </div>
-
-      <div className="item">
-        <img src={pfImage} alt="profile-1" className="pfp" />
-        <div className="texts">
-          <span>Vaishnavi Patil</span>
-          <p>Hello there!</p>
-        </div>
-      </div>
-
-      <div className="item">
-        <img src={pfImage} alt="profile-1" className="pfp" />
-        <div className="texts">
-          <span>Vaishnavi Patil</span>
-          <p>Hello there!</p>
-        </div>
-      </div>
-
-      <div className="item">
-        <img src={pfImage} alt="profile-1" className="pfp" />
-        <div className="texts">
-          <span>Vaishnavi Patil</span>
-          <p>Hello there!</p>
-        </div>
-      </div>
-
-      <div className="item">
-        <img src={pfImage} alt="profile-1" className="pfp" />
-        <div className="texts">
-          <span>Vaishnavi Patil</span>
-          <p>Hello there!</p>
-        </div>
-      </div>
-
-      <div className="item">
-        <img src={pfImage} alt="profile-1" className="pfp" />
-        <div className="texts">
-          <span>Vaishnavi Patil</span>
-          <p>Hello there!</p>
-        </div>
-      </div>
+      ))}
     </div>
   );
 }
