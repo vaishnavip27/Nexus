@@ -1,7 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import "./chat.css";
 import userImg from "../../pictures/profile-2.png";
-import sceneImg from "../../pictures/scenery.jpg";
 import { LuPhone } from "react-icons/lu";
 import { IoVideocamOutline } from "react-icons/io5";
 import { BsInfoCircle } from "react-icons/bs";
@@ -10,45 +9,106 @@ import { GrAttachment } from "react-icons/gr";
 import { FaMicrophone } from "react-icons/fa";
 import { RiSendPlaneFill } from "react-icons/ri";
 import EmojiPicker from "emoji-picker-react";
-import { onSnapshot } from "firebase/firestore";
+import {
+  onSnapshot,
+  doc,
+  updateDoc,
+  arrayUnion,
+  getDoc, // Added getDoc import
+} from "firebase/firestore";
+import { db } from "../../lib/firebase";
+import { useChatStore } from "../../lib/chatStore";
+import { useUserStore } from "../../lib/userStore";
 
 export default function Chat() {
   const [open, setOpen] = useState(false);
   const [text, setText] = useState("");
-  const [chat, setChat] = useState();
-
+  const [messages, setMessages] = useState([]);
+  const { chatId, user } = useChatStore();
+  const { currentUser } = useUserStore();
   const endRef = useRef(null);
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
-  }, []);
+  }, [messages]);
 
   useEffect(() => {
-    const unSub = onSnapshot(
-      doc(db, "chats", "BgJIoAsolzleSnt21lKF"),
-      (res) => {
-        setChat(res.data());
+    if (!chatId) return;
+
+    const unSub = onSnapshot(doc(db, "chats", chatId), (doc) => {
+      if (doc.exists()) {
+        setMessages(doc.data().messages || []);
       }
-    );
+    });
 
     return () => {
       unSub();
     };
-  });
+  }, [chatId]);
 
   const handleEmoji = (e) => {
     setText((prev) => prev + e.emoji);
     setOpen(false);
   };
 
+  const handleSend = async () => {
+    if (text === "") return;
+
+    try {
+      await updateDoc(doc(db, "chats", chatId), {
+        messages: arrayUnion({
+          id: Date.now().toString(),
+          text,
+          createdAt: new Date(),
+          senderId: currentUser.id,
+        }),
+      });
+
+      const userIDs = [currentUser.id, user.id];
+
+      userIDs.forEach(async (id) => {
+        const userChatsRef = doc(db, "userchats", id);
+        const userChatsSnapshot = await getDoc(userChatsRef);
+
+        if (userChatsSnapshot.exists()) {
+          // Fixed typo from exits() to exists()
+          const userChatsData = userChatsSnapshot.data();
+
+          const chatIndex = userChatsData.chats.findIndex(
+            (c) => c.chatId === chatId
+          );
+
+          if (chatIndex !== -1) {
+            // Added check for valid index
+            userChatsData.chats[chatIndex].lastMessage = text;
+            userChatsData.chats[chatIndex].isSeen = true;
+            userChatsData.chats[chatIndex].updatedAt = Date.now();
+
+            await updateDoc(userChatsRef, {
+              chats: userChatsData.chats,
+            });
+          }
+        }
+      });
+    } catch (error) {
+      console.error("Error sending message:", error);
+    }
+  };
+
+  if (!chatId) {
+    return (
+      <div className="no-chat-selected">Select a chat to start messaging</div>
+    );
+  }
+
   return (
     <div className="chat">
       <div className="top">
         <div className="user">
-          <img src={userImg} alt="user-img" />
+          <img src={user?.photoURL || userImg} alt="user-img" />
           <div className="profile">
-            <span>Vaishnavi Patil</span>
-            <p>Lorem ipsum dolor, sit amef</p>
+            <span>{user?.username}</span>
+            <p>Online</p>
           </div>
         </div>
         <div className="icons">
@@ -64,81 +124,30 @@ export default function Chat() {
         </div>
       </div>
 
-      {/* the message section */}
       <div className="center">
-        <div className="message them">
-          <img src={userImg} alt="image" />
-          <div className="texts">
-            <p>
-              Loerem ipsun hey there how are you can i meet you look sweet and
-              chu yes his name is vaishnavi and she is very strong and confifent
-              and cool and hardowkrijh and ahe knows hwta to do in future
-            </p>
-            <span>1 min ago</span>
+        {messages.map((msg, index) => (
+          <div
+            key={msg.id || index}
+            className={`message ${
+              msg.senderId === currentUser.id ? "own" : "them"
+            }`}
+          >
+            {msg.senderId !== currentUser.id && (
+              <img src={userImg} alt="image" />
+            )}
+            <div className="texts">
+              <p>{msg.text}</p>
+              <span>
+                {msg.date
+                  ? new Date(msg.date.toDate()).toLocaleString()
+                  : "Sending..."}
+              </span>
+            </div>
           </div>
-        </div>
-
-        <div className="message own">
-          <div className="texts">
-            <p>
-              Loerem ipsun hey there how are you can i meet you look sweet and
-              chu yes his name is vaishnavi and she is very strong and confifent
-              and cool and hardowkrijh and ahe knows hwta to do in future
-            </p>
-            <span>1 min ago</span>
-          </div>
-        </div>
-
-        <div className="message them">
-          <img src={userImg} alt="image" />
-          <div className="texts">
-            <p>
-              Loerem ipsun hey there how are you can i meet you look sweet and
-              chu yes his name is vaishnavi and she is very strong and confifent
-              and cool and hardowkrijh and ahe knows hwta to do in future
-            </p>
-            <span>1 min ago</span>
-          </div>
-        </div>
-
-        <div className="message own">
-          <div className="texts">
-            <p>
-              Loerem ipsun hey there how are you can i meet you look sweet and
-              chu yes his name is vaishnavi and she is very strong and confifent
-              and cool and hardowkrijh and ahe knows hwta to do in future
-            </p>
-            <span>1 min ago</span>
-          </div>
-        </div>
-
-        <div className="message them">
-          <img src={userImg} alt="image" />
-          <div className="texts">
-            <p>
-              Loerem ipsun hey there how are you can i meet you look sweet and
-              chu yes his name is vaishnavi and she is very strong and confifent
-              and cool and hardowkrijh and ahe knows hwta to do in future
-            </p>
-            <span>1 min ago</span>
-          </div>
-        </div>
-
-        <div className="message own">
-          <div className="texts">
-            <img src={sceneImg} alt="me" />
-            <p>
-              Loerem ipsun hey there how are you can i meet you look sweet and
-              chu yes his name is vaishnavi and she is very strong and confifent
-              and cool and hardowkrijh and ahe knows hwta to do in future
-            </p>
-            <span>1 min ago</span>
-          </div>
-        </div>
+        ))}
         <div ref={endRef}></div>
       </div>
 
-      {/* message send container */}
       <div className="bottom">
         <div className="input-wrapper">
           <MdEmojiEmotions
@@ -150,10 +159,11 @@ export default function Chat() {
             placeholder="Type a message"
             value={text}
             onChange={(e) => setText(e.target.value)}
+            onKeyPress={(e) => e.key === "Enter" && handleSend()}
           />
           <GrAttachment className="pin" />
           <FaMicrophone className="micro" />
-          <RiSendPlaneFill className="send" />
+          <RiSendPlaneFill className="send" onClick={handleSend} />
 
           <div className="emoji">
             {open && (

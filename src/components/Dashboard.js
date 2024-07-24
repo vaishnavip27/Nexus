@@ -3,13 +3,16 @@ import List from "./list/List";
 import Chat from "./chat/Chat";
 import Detail from "./detail/Detail";
 import "./Dashboard.css";
+import { useChatStore } from "../lib/chatStore";
 
 function Dashboard() {
+  const { chatId } = useChatStore();
+
   return (
     <div className="dashboard">
       <List />
-      <Chat />
-      <Detail />
+      {chatId && <Chat />}
+      {chatId && <Detail />}
     </div>
   );
 }

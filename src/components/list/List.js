@@ -5,12 +5,14 @@ import { useUserStore } from "../../lib/userStore";
 import { db } from "../../lib/firebase";
 import { doc, getDoc, onSnapshot } from "firebase/firestore";
 import pfImage from "../../pictures/profile-2.png";
+import { useChatStore } from "../../lib/chatStore";
 
 export default function List() {
   const [chats, setChats] = useState([]);
   const [addMode, setAddMode] = useState(false);
 
   const { currentUser } = useUserStore();
+  const { chatId, changeChat } = useChatStore();
 
   useEffect(() => {
     if (!currentUser || !currentUser.id) return;
@@ -56,12 +58,24 @@ export default function List() {
     }
   };
 
+  const handleSelect = (chat) => {
+    changeChat(chat.chatId, chat.user);
+  };
+
   return (
     <div className="list">
-      <Userinfo addMode={addMode} toggleAddMode={toggleAddMode} />
+      <Userinfo
+        addMode={addMode}
+        toggleAddMode={toggleAddMode}
+        onClick={() => handleSelect(chat)}
+      />
       <div className="chatList">
         {chats.map((chat) => (
-          <div className="item" key={chat.chatId}>
+          <div
+            className="item"
+            key={chat.chatId}
+            onClick={() => handleSelect(chat)}
+          >
             <img src={pfImage} alt="profile" className="pfp" />
             <div className="texts">
               <span>{chat.user.username}</span>
