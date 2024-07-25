@@ -1,15 +1,15 @@
-// Detail.js
 import React, { useState, useEffect } from "react";
 import "./detail.css";
 import profileImg from "../../pictures/profile-1.png";
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 import { db, auth } from "../../lib/firebase";
 import { useChatStore } from "../../lib/chatStore";
+import { getStorage, ref, getDownloadURL } from "firebase/storage";
 
 export default function Detail() {
   const [isExpanded, setIsExpanded] = useState(false);
   const [chatImages, setChatImages] = useState([]);
-  const { chatId } = useChatStore();
+  const { chatId, selectedUser } = useChatStore();
 
   const toggleExpand = () => {
     setIsExpanded(!isExpanded);
@@ -23,24 +23,37 @@ export default function Detail() {
         const chatDoc = await db.collection("chats").doc(chatId).get();
         if (chatDoc.exists) {
           const chatData = chatDoc.data();
-          const images = chatData.messages
+          const imageUrls = chatData.messages
             .filter((msg) => msg.imgUrl)
             .map((msg) => msg.imgUrl);
-          setChatImages(images);
+
+          const promises = imageUrls.map(async (url) => {
+            const storage = getStorage();
+            const storageRef = ref(storage, url);
+            const downloadURL = await getDownloadURL(storageRef);
+            return downloadURL;
+          });
+
+          const imageDownloads = await Promise.all(promises);
+          setChatImages(imageDownloads);
         }
       } catch (error) {
-        console.error("Error fetching chat images:", error);
+        console.error("Error fetching images:", error);
       }
     };
 
     fetchImages();
   }, [chatId]);
 
+  if (!selectedUser) {
+    return <div className="detail">Select a user to see details</div>;
+  }
+
   return (
     <div className="detail">
       <div className="p-user">
-        <img src={profileImg} alt="profile-img" />
-        <div className="p-username">Vaishnavi Patil</div>
+        <img src={selectedUser.photoURL || profileImg} alt="profile-img" />
+        <div className="p-username">{selectedUser.username}</div>
       </div>
 
       <div className="info">

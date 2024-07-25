@@ -33,7 +33,7 @@ export default function LoginPage({ onLoginSuccess }) {
         <div className="head">Welcome back!</div>
         <div className="sub-head">Please enter your details</div>
 
-        <button>
+        <button className="g-button">
           <img src={googleIcon} alt="icon" className="g-icon" />
           Sign in with Google
         </button>

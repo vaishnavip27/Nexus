@@ -27,7 +27,7 @@ export default function Chat() {
   const [open, setOpen] = useState(false);
   const [text, setText] = useState("");
   const [messages, setMessages] = useState([]);
-  const { chatId, user } = useChatStore();
+  const { chatId, selectedUser } = useChatStore();
   const { currentUser } = useUserStore();
   const endRef = useRef(null);
   const fileInputRef = useRef(null);
@@ -123,9 +123,30 @@ export default function Chat() {
             });
           }
         }
+
+        if (file) {
+          const storageRef = ref(
+            storage,
+            `chat_images/${Date.now()}_${file.name}`
+          );
+          try {
+            const snapshot = await uploadBytes(storageRef, file);
+            const downloadURL = await getDownloadURL(snapshot.ref);
+            // Store the downloadURL in your Firestore database
+          } catch (error) {
+            console.error("Error uploading image:", error);
+          }
+        }
       });
 
       setText("");
+
+      if (imgUrl) {
+        const event = new CustomEvent("newChatImage", {
+          detail: { chatId: imgUrl },
+        });
+        window.dispatchEvent(event);
+      }
     } catch (error) {
       console.error("Error sending message:", error);
     }
@@ -196,9 +217,9 @@ export default function Chat() {
     <div className="chat">
       <div className="top">
         <div className="user">
-          <img src={user?.photoURL || userImg} alt="user-img" />
+          <img src={selectedUser?.photoURL || userImg} alt="user-img" />
           <div className="profile">
-            <span>{user?.username}</span>
+            <span>{selectedUser?.username}</span>
             <p>Online</p>
           </div>
         </div>

@@ -2,6 +2,7 @@ body {
   overflow: hidden;
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 .main-container {
@@ -33,6 +34,10 @@ body {
   margin-top: 3px;
 }
 
+.login-container .g-button {
+  margin-top: 36px;
+}
+
 .or-container {
   display: flex;
   align-items: center;
@@ -50,6 +55,7 @@ body {
 .or {
   font-size: 18px;
 }
+
 .form-group label {
   font-size: 19px;
 }
