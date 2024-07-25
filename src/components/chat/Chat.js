@@ -81,7 +81,8 @@ export default function Chat() {
           if (chatIndex !== -1) {
             // Added check for valid index
             userChatsData.chats[chatIndex].lastMessage = text;
-            userChatsData.chats[chatIndex].isSeen = true;
+            userChatsData.chats[chatIndex].isSeen =
+              id === currentUser.id ? true : false;
             userChatsData.chats[chatIndex].updatedAt = Date.now();
 
             await updateDoc(userChatsRef, {

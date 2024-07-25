@@ -3,14 +3,13 @@ import "./list.css";
 import Userinfo from "./userInfo/Userinfo";
 import { useUserStore } from "../../lib/userStore";
 import { db } from "../../lib/firebase";
-import { doc, getDoc, onSnapshot } from "firebase/firestore";
+import { doc, getDoc, onSnapshot, updateDoc } from "firebase/firestore";
 import pfImage from "../../pictures/profile-2.png";
 import { useChatStore } from "../../lib/chatStore";
 
 export default function List() {
   const [chats, setChats] = useState([]);
   const [addMode, setAddMode] = useState(false);
-
   const { currentUser } = useUserStore();
   const { chatId, changeChat } = useChatStore();
 
@@ -48,8 +47,7 @@ export default function List() {
 
   const handleSearch = async (e) => {
     e.preventDefault();
-    const formData = new FormData();
-    const username = formData.get("username");
+    const username = e.target.elements.username.value;
 
     try {
       // Your search logic here
@@ -58,23 +56,42 @@ export default function List() {
     }
   };
 
-  const handleSelect = (chat) => {
-    changeChat(chat.chatId, chat.user);
+  const handleSelect = async (chat) => {
+    const userChats = chats.map((item) => {
+      const { user, ...rest } = item;
+      return rest;
+    });
+
+    const chatIndex = userChats.findIndex(
+      (item) => item.chatId === chat.chatId
+    );
+
+    userChats[chatIndex].isSeen = true;
+
+    const userChatRef = doc(db, "userchats", currentUser.id);
+
+    try {
+      await updateDoc(userChatRef, {
+        chats: userChats,
+      });
+      changeChat(chat.chatId, chat.user);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
     <div className="list">
-      <Userinfo
-        addMode={addMode}
-        toggleAddMode={toggleAddMode}
-        onClick={() => handleSelect(chat)}
-      />
+      <Userinfo addMode={addMode} toggleAddMode={toggleAddMode} />
       <div className="chatList">
         {chats.map((chat) => (
           <div
             className="item"
             key={chat.chatId}
             onClick={() => handleSelect(chat)}
+            style={{
+              backgroundColor: chat?.isSeen ? "transparent" : "blue",
+            }}
           >
             <img src={pfImage} alt="profile" className="pfp" />
             <div className="texts">
