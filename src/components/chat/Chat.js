@@ -8,15 +8,18 @@ import { MdEmojiEmotions } from "react-icons/md";
 import { GrAttachment } from "react-icons/gr";
 import { FaMicrophone } from "react-icons/fa";
 import { RiSendPlaneFill } from "react-icons/ri";
+import { FaCamera } from "react-icons/fa";
+import { IoMdImages } from "react-icons/io";
 import EmojiPicker from "emoji-picker-react";
 import {
   onSnapshot,
   doc,
   updateDoc,
   arrayUnion,
-  getDoc, // Added getDoc import
+  getDoc,
 } from "firebase/firestore";
-import { db } from "../../lib/firebase";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { db, storage } from "../../lib/firebase";
 import { useChatStore } from "../../lib/chatStore";
 import { useUserStore } from "../../lib/userStore";
 
@@ -27,6 +30,9 @@ export default function Chat() {
   const { chatId, user } = useChatStore();
   const { currentUser } = useUserStore();
   const endRef = useRef(null);
+  const fileInputRef = useRef(null);
+
+  const [attachmentsOpen, setAttachmentsOpen] = useState(false);
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -51,14 +57,15 @@ export default function Chat() {
     setOpen(false);
   };
 
-  const handleSend = async () => {
-    if (text === "") return;
+  const handleSend = async (imgUrl = null) => {
+    if (text === "" && !imgUrl) return;
 
     try {
       await updateDoc(doc(db, "chats", chatId), {
         messages: arrayUnion({
           id: Date.now().toString(),
-          text,
+          text: imgUrl ? "" : text,
+          imgUrl,
           createdAt: new Date(),
           senderId: currentUser.id,
         }),
@@ -71,7 +78,6 @@ export default function Chat() {
         const userChatsSnapshot = await getDoc(userChatsRef);
 
         if (userChatsSnapshot.exists()) {
-          // Fixed typo from exits() to exists()
           const userChatsData = userChatsSnapshot.data();
 
           const chatIndex = userChatsData.chats.findIndex(
@@ -79,10 +85,10 @@ export default function Chat() {
           );
 
           if (chatIndex !== -1) {
-            // Added check for valid index
-            userChatsData.chats[chatIndex].lastMessage = text;
-            userChatsData.chats[chatIndex].isSeen =
-              id === currentUser.id ? true : false;
+            userChatsData.chats[chatIndex].lastMessage = imgUrl
+              ? "Image"
+              : text;
+            userChatsData.chats[chatIndex].isSeen = id === currentUser.id;
             userChatsData.chats[chatIndex].updatedAt = Date.now();
 
             await updateDoc(userChatsRef, {
@@ -91,8 +97,35 @@ export default function Chat() {
           }
         }
       });
+
+      setText("");
     } catch (error) {
       console.error("Error sending message:", error);
+    }
+  };
+
+  const handleFileChange = async (event) => {
+    const file = event.target.files[0];
+    if (!file) return;
+
+    try {
+      const storageRef = ref(storage, `chat_images/${Date.now()}_${file.name}`);
+      await uploadBytes(storageRef, file);
+
+      const downloadURL = await getDownloadURL(storageRef);
+      await handleSend(downloadURL);
+
+      if (fileInputRef.current) {
+        fileInputRef.current.value = "";
+      }
+    } catch (error) {
+      console.error("Error uploading image:", error);
+    }
+  };
+
+  const handleImageOptionClick = () => {
+    if (fileInputRef.current) {
+      fileInputRef.current.click();
     }
   };
 
@@ -134,13 +167,16 @@ export default function Chat() {
             }`}
           >
             {msg.senderId !== currentUser.id && (
-              <img src={userImg} alt="image" />
+              <img src={userImg} alt="user" className="user-avatar" />
             )}
             <div className="texts">
-              <p>{msg.text}</p>
+              {msg.text && <p>{msg.text}</p>}
+              {msg.imgUrl && (
+                <img src={msg.imgUrl} alt="chat image" className="chat-image" />
+              )}
               <span>
-                {msg.date
-                  ? new Date(msg.date.toDate()).toLocaleString()
+                {msg.createdAt
+                  ? new Date(msg.createdAt.toDate()).toLocaleString()
                   : "Sending..."}
               </span>
             </div>
@@ -162,9 +198,12 @@ export default function Chat() {
             onChange={(e) => setText(e.target.value)}
             onKeyPress={(e) => e.key === "Enter" && handleSend()}
           />
-          <GrAttachment className="pin" />
+          <GrAttachment
+            className="pin"
+            onClick={() => setAttachmentsOpen((prev) => !prev)}
+          />
           <FaMicrophone className="micro" />
-          <RiSendPlaneFill className="send" onClick={handleSend} />
+          <RiSendPlaneFill className="send" onClick={() => handleSend()} />
 
           <div className="emoji">
             {open && (
@@ -173,6 +212,28 @@ export default function Chat() {
               </div>
             )}
           </div>
+
+          {attachmentsOpen && (
+            <div className="attachments">
+              <div
+                className="attachment-option"
+                onClick={handleImageOptionClick}
+              >
+                <IoMdImages className="image-icon" /> Image
+              </div>
+              <div className="attachment-option">
+                <FaCamera className="camera-icon" /> Camera
+              </div>
+            </div>
+          )}
+
+          <input
+            type="file"
+            accept="image/*"
+            ref={fileInputRef}
+            onChange={handleFileChange}
+            style={{ display: "none" }}
+          />
         </div>
       </div>
     </div>

@@ -204,3 +204,47 @@
 .them .texts p {
   border-radius: 0px 25px 25px 25px;
 }
+
+.attachments {
+  position: absolute;
+  bottom: 60px;
+  left: 616px;
+  background-color: black;
+  border: 1px solid rgb(57, 57, 57);
+  border-radius: 5px;
+  display: flex;
+  flex-direction: column;
+  z-index: 100;
+  gap: 7px;
+  height: 92px;
+  width: 200px;
+}
+
+.attachment-option {
+  display: flex;
+  align-items: center;
+  padding: 8px;
+  cursor: pointer;
+  font-size: 17px;
+  background-color: black;
+  gap: 28px;
+}
+
+.attachment-option:hover {
+  background-color: rgb(19, 18, 18);
+}
+
+.image-icon,
+.camera-icon {
+  margin-left: 10px;
+}
+
+.image-icon {
+  height: 22px;
+  width: 22px;
+}
+
+.camera-icon {
+  height: 18px;
+  width: 18px;
+}
