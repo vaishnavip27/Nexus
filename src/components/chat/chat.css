@@ -12,29 +12,34 @@
 }
 
 .user img {
-  height: 56px;
-  width: 56px;
+  height: 52px;
+  width: 52px;
   object-fit: cover;
 }
 
 .top {
-  padding: 17px;
+  padding: 15px;
   display: flex;
   align-items: center;
   justify-content: space-between;
   border-bottom: 1px solid rgb(81, 81, 81);
 }
 
+.p-username {
+  font-weight: 500;
+  font-size: 22px;
+}
+
 .user {
   display: flex;
   align-items: center;
-  gap: 20px;
+  gap: 17px;
 }
 
 .profile {
   display: flex;
   flex-direction: column;
-  gap: 6px;
+  gap: 3px;
 }
 
 .profile span {
@@ -44,7 +49,7 @@
 }
 
 .profile p {
-  font-size: 15px;
+  font-size: 14px;
   font-family: "Noto Sans", sans-serif;
 }
 
@@ -57,8 +62,8 @@
 
 .border {
   border: 1px solid rgb(92, 92, 92);
-  height: 44px;
-  width: 44px;
+  height: 42px;
+  width: 42px;
   padding: 4px;
   border-radius: 50%;
   display: flex;
@@ -67,13 +72,13 @@
 }
 
 .icon {
-  height: 26px;
-  width: 26px;
+  height: 21px;
+  width: 21px;
   cursor: pointer;
 }
 
 .bottom {
-  padding: 14px;
+  padding: 10px;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -90,9 +95,9 @@
 
 .input-wrapper .em {
   position: absolute;
-  left: 10px;
-  height: 26px;
-  width: 26px;
+  left: 16px;
+  height: 24px;
+  width: 24px;
   cursor: pointer;
 }
 
@@ -101,10 +106,12 @@
   border: none;
   outline: none;
   font-family: "Noto Sans", sans-serif;
+  font-weight: 300;
   flex: 1;
   color: white;
-  padding: 15px;
-  padding-left: 50px; /* Add padding to make space for the emoji icon and gap */
+  padding: 14px;
+  font-size: 17px;
+  padding-left: 54px; /* Add padding to make space for the emoji icon and gap */
   border-radius: 10px;
 }
 
@@ -130,20 +137,20 @@
 }
 
 .center {
-  padding: 20px;
+  padding: 18px;
   flex: 1;
   border: 1px solid rgb(67, 67, 67);
   background-color: black;
   overflow: scroll;
   display: flex;
   flex-direction: column;
-  gap: 20px;
+  gap: 12px;
   scrollbar-width: none;
 
   .message {
     max-width: 70%;
     display: flex;
-    gap: 20px;
+    gap: 18px;
 
     &.own {
       align-self: flex-end;
@@ -159,7 +166,8 @@
       flex: 1;
       display: flex;
       flex-direction: column;
-      gap: 5px;
+      flex-wrap: wrap;
+      align-items: flex-end;
 
       img {
         width: 100%;
@@ -169,7 +177,7 @@
       }
 
       p {
-        padding: 18px;
+        padding: 16px 18px;
         background-color: #252b2e;
         font-size: 16px;
       }
@@ -193,11 +201,11 @@
 }
 
 .own .texts p {
-  border-radius: 25px 25px 0px 25px;
+  border-radius: 16px 16px 0px 16px;
 }
 
 .them .texts p {
-  border-radius: 0px 25px 25px 25px;
+  border-radius: 0px 16px 16px 16px;
 }
 
 .attachments {
@@ -283,4 +291,8 @@
 
 .micro-recording {
   color: red;
+}
+
+.chat .center .message .texts .message-timestamp {
+  font-size: 10px;
 }

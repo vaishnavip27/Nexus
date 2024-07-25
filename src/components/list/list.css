@@ -19,12 +19,17 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  margin-top: 6px;
   border: 1px solid rgb(70, 70, 70);
 }
 
 .chatList::-webkit-scrollbar {
   display: none;
+}
+
+h3 {
+  margin-left: -13rem;
+  padding-top: 12px;
+  padding-bottom: 8px;
 }
 
 .item {
@@ -34,9 +39,9 @@
   padding: 14px;
   cursor: pointer;
   border: 1px solid rgb(85, 85, 85);
-  width: 94%;
-  height: 72px;
-  margin-top: 6px;
+  width: 100%;
+  height: 70px;
+  margin-top: 8px;
   border-radius: 8px;
   background-color: rgb(13, 13, 13);
 }
@@ -46,8 +51,8 @@
 }
 
 .item .pfp {
-  height: 50px;
-  width: 50px;
+  height: 48px;
+  width: 48px;
   object-fit: cover;
 }
 

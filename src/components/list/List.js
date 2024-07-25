@@ -84,6 +84,7 @@ export default function List() {
     <div className="list">
       <Userinfo addMode={addMode} toggleAddMode={toggleAddMode} />
       <div className="chatList">
+        <h3>Messages</h3>
         {chats.map((chat) => (
           <div
             className="item"

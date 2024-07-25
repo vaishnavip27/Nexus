@@ -7,7 +7,6 @@ import { IoVideocamOutline } from "react-icons/io5";
 import { BsInfoCircle } from "react-icons/bs";
 import { MdEmojiEmotions } from "react-icons/md";
 import { GrAttachment } from "react-icons/gr";
-import { FaMicrophone } from "react-icons/fa";
 import { RiSendPlaneFill } from "react-icons/ri";
 import { FaCamera } from "react-icons/fa";
 import { IoMdImages } from "react-icons/io";
@@ -37,6 +36,14 @@ export default function Chat() {
   const [attachmentsOpen, setAttachmentsOpen] = useState(false);
   const [isCameraOpen, setIsCameraOpen] = useState(false);
   const webcamRef = useRef(null);
+
+  const formatTime = (date) => {
+    return date.toDate().toLocaleTimeString([], {
+      hour: "2-digit",
+      minute: "2-digit",
+      hour12: true, // or false for 24-hour format
+    });
+  };
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -70,7 +77,7 @@ export default function Chat() {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, [attachmentsRef]);
+  }, []);
 
   const handleEmoji = (e) => {
     setText((prev) => prev + e.emoji);
@@ -78,7 +85,7 @@ export default function Chat() {
   };
 
   const handleSend = async (imgUrl = null) => {
-    if (text === "" && !imgUrl) return;
+    if (text.trim() === "" && !imgUrl) return;
 
     try {
       await updateDoc(doc(db, "chats", chatId), {
@@ -144,9 +151,7 @@ export default function Chat() {
   };
 
   const handleImageOptionClick = () => {
-    if (fileInputRef.current) {
-      fileInputRef.current.click();
-    }
+    fileInputRef.current?.click();
   };
 
   const handleCameraClick = () => {
@@ -224,12 +229,10 @@ export default function Chat() {
             <div className="texts">
               {msg.text && <p>{msg.text}</p>}
               {msg.imgUrl && (
-                <img src={msg.imgUrl} alt="chat image" className="chat-image" />
+                <img src={msg.imgUrl} alt="chat" className="chat-image" />
               )}
-              <span>
-                {msg.createdAt
-                  ? new Date(msg.createdAt.toDate()).toLocaleString()
-                  : "Sending..."}
+              <span className="message-timestamp">
+                {msg.createdAt ? formatTime(msg.createdAt) : "Sending..."}
               </span>
             </div>
           </div>
@@ -276,7 +279,7 @@ export default function Chat() {
           <div className="emoji">
             {open && (
               <div className="picker">
-                <EmojiPicker onEmojiClick={handleEmoji} />
+                <EmojiPicker onEmojiClick={handleEmoji} className="em-icon" />
               </div>
             )}
           </div>
