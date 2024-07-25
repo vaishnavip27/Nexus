@@ -1,4 +1,5 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useRef, useCallback } from "react";
+import Webcam from "react-webcam";
 import "./chat.css";
 import userImg from "../../pictures/profile-2.png";
 import { LuPhone } from "react-icons/lu";
@@ -31,8 +32,11 @@ export default function Chat() {
   const { currentUser } = useUserStore();
   const endRef = useRef(null);
   const fileInputRef = useRef(null);
+  const attachmentsRef = useRef(null);
 
   const [attachmentsOpen, setAttachmentsOpen] = useState(false);
+  const [isCameraOpen, setIsCameraOpen] = useState(false);
+  const webcamRef = useRef(null);
 
   useEffect(() => {
     endRef.current?.scrollIntoView({ behavior: "smooth" });
@@ -51,6 +55,22 @@ export default function Chat() {
       unSub();
     };
   }, [chatId]);
+
+  useEffect(() => {
+    function handleClickOutside(event) {
+      if (
+        attachmentsRef.current &&
+        !attachmentsRef.current.contains(event.target)
+      ) {
+        setAttachmentsOpen(false);
+      }
+    }
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, [attachmentsRef]);
 
   const handleEmoji = (e) => {
     setText((prev) => prev + e.emoji);
@@ -129,6 +149,38 @@ export default function Chat() {
     }
   };
 
+  const handleCameraClick = () => {
+    setIsCameraOpen(true);
+    setAttachmentsOpen(false);
+  };
+
+  const handleCapture = useCallback(async () => {
+    const imageSrc = webcamRef.current.getScreenshot();
+    if (imageSrc) {
+      const res = await fetch(imageSrc);
+      const blob = await res.blob();
+
+      const file = new File([blob], "webcam-capture.jpg", {
+        type: "image/jpeg",
+      });
+
+      try {
+        const storageRef = ref(
+          storage,
+          `chat_images/${Date.now()}_webcam-capture.jpg`
+        );
+        await uploadBytes(storageRef, file);
+
+        const downloadURL = await getDownloadURL(storageRef);
+        await handleSend(downloadURL);
+
+        setIsCameraOpen(false);
+      } catch (error) {
+        console.error("Error uploading webcam image:", error);
+      }
+    }
+  }, [webcamRef]);
+
   if (!chatId) {
     return (
       <div className="no-chat-selected">Select a chat to start messaging</div>
@@ -185,6 +237,23 @@ export default function Chat() {
         <div ref={endRef}></div>
       </div>
 
+      {isCameraOpen && (
+        <div className="camera-modal">
+          <Webcam
+            audio={false}
+            ref={webcamRef}
+            screenshotFormat="image/jpeg"
+            videoConstraints={{
+              width: 480,
+              height: 360,
+              facingMode: "user",
+            }}
+          />
+          <button onClick={handleCapture}>Capture</button>
+          <button onClick={() => setIsCameraOpen(false)}>Close</button>
+        </div>
+      )}
+
       <div className="bottom">
         <div className="input-wrapper">
           <MdEmojiEmotions
@@ -202,7 +271,6 @@ export default function Chat() {
             className="pin"
             onClick={() => setAttachmentsOpen((prev) => !prev)}
           />
-          <FaMicrophone className="micro" />
           <RiSendPlaneFill className="send" onClick={() => handleSend()} />
 
           <div className="emoji">
@@ -214,14 +282,14 @@ export default function Chat() {
           </div>
 
           {attachmentsOpen && (
-            <div className="attachments">
+            <div ref={attachmentsRef} className="attachments">
               <div
                 className="attachment-option"
                 onClick={handleImageOptionClick}
               >
                 <IoMdImages className="image-icon" /> Image
               </div>
-              <div className="attachment-option">
+              <div className="attachment-option" onClick={handleCameraClick}>
                 <FaCamera className="camera-icon" /> Camera
               </div>
             </div>

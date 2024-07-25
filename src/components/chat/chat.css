@@ -109,7 +109,6 @@
 }
 
 .input-wrapper .pin,
-.input-wrapper .micro,
 .input-wrapper .send {
   position: absolute;
   cursor: pointer;
@@ -117,11 +116,7 @@
 }
 
 .input-wrapper .pin {
-  right: 100px;
-}
-
-.input-wrapper .micro {
-  right: 58px;
+  right: 60px;
 }
 
 .input-wrapper .send {
@@ -247,4 +242,45 @@
 .camera-icon {
   height: 18px;
   width: 18px;
+}
+
+.camera-modal {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.camera-modal button {
+  margin: 10px;
+  width: 230px;
+  height: 60px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.camera-modal button:hover {
+  background-color: pink;
+}
+
+.btn-flex {
+  display: flex;
+}
+
+.camera-modal button:hover {
+  background-color: #0056b3;
+}
+
+.micro-recording {
+  color: red;
 }
