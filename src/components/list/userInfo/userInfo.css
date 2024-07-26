@@ -1,7 +1,7 @@
 @import url("https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
 
 .userInfo {
-  border-bottom: 1px solid rgb(54, 54, 60);
+  border-bottom: 1px solid rgb(33, 33, 33);
 }
 
 .userInfo .search {

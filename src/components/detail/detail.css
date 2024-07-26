@@ -58,10 +58,7 @@
   font-weight: 600;
   font-size: 19px;
   width: 334px;
-}
-
-.user-deets {
-  border: 1px solid white;
+  margin-top: 266px;
 }
 
 .user-deets .cd {
@@ -71,24 +68,33 @@
   margin-top: 14px;
 }
 
-.user-deets .photo-detail {
-  border: 1px solid white;
+.content-group {
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  gap: 25px;
+}
+
+.user-deets .photo-detail,
+.user-deets .share-details {
   height: 8.8rem;
   margin-top: 2.1rem;
 }
 
-.see-flex {
+.photo-detail .see-flex {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 104px;
 }
 
-.photo-detail .pnv {
+.photo-detail .pnv,
+.share-details .sf {
   font-size: 18px;
 }
 
-.photo-detail .see-more {
+.photo-detail .see-more,
+.share-details .see-more {
   font-size: 17px;
 }
 
@@ -96,10 +102,55 @@
   display: flex;
   align-items: center;
   padding-left: 26px;
+  gap: 8px;
 }
 
 .photo-container img {
-  height: 100px;
-  width: 100px;
+  height: 120px;
+  width: 160px;
   object-fit: cover;
+  margin-top: 10px;
+  border-radius: 17px;
+}
+
+.share-details .see-flex {
+  display: flex;
+  align-items: items;
+  justify-content: center;
+  gap: 158px;
+}
+
+.content {
+  height: 40px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  padding-left: 24px;
+  margin-top: 24px;
+}
+
+.content img {
+  height: 70px;
+  width: 70px;
+}
+
+.content .content-des {
+  font-size: 17px;
+  margin-left: 5px;
+}
+
+.content .s-doc {
+  height: 48px;
+  width: 54px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(85, 85, 85, 0.549);
+}
+
+.s-icon {
+  height: 25px;
+  width: 25px;
 }

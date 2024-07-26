@@ -1,7 +1,8 @@
 import React from "react";
 import "./detail.css";
-import imgOne from "../../pictures/bg-1.png";
-import imgTwo from "../../pictures/bg-2.jpg";
+import imgOne from "../../pictures/photo-1.jpg";
+import imgTwo from "../../pictures/photo-2.jpg";
+import { IoDocumentText } from "react-icons/io5";
 
 export default function Detail({ onBackgroundChange }) {
   return (
@@ -20,6 +21,33 @@ export default function Detail({ onBackgroundChange }) {
           <div className="photo-container">
             <img src={imgOne} alt="img-one" className="image" />
             <img src={imgTwo} alt="img-two" className="image" />
+          </div>
+        </div>
+
+        <div className="share-details">
+          <div className="see-flex">
+            <div className="sf">Shared Files</div>
+            <div className="see-more">See more</div>
+          </div>
+
+          <div className="content-group">
+            <div className="content">
+              <div className="s-doc">
+                <IoDocumentText className="s-icon" />
+              </div>
+              <div className="content-des">
+                Changes for the provision of the department
+              </div>
+            </div>
+
+            <div className="content">
+              <div className="s-doc">
+                <IoDocumentText className="s-icon" />
+              </div>
+              <div className="content-des">
+                Changes for the provision of the department
+              </div>
+            </div>
           </div>
         </div>
 
