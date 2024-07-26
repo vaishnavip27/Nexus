@@ -19,7 +19,6 @@
   display: flex;
   align-items: center;
   flex-direction: column;
-  border: 1px solid rgb(45, 45, 45);
 }
 
 .chatList::-webkit-scrollbar {
@@ -43,11 +42,11 @@ h3 {
   border-radius: 6px;
   height: 74px;
   margin-top: 8px;
-  background-color: rgb(12, 12, 12);
+  background-color: rgb(24, 24, 27);
 }
 
 .item:hover {
-  border-left: 6px solid #bbef61;
+  border-left: 6px solid rgb(115, 38, 239);
 }
 
 .item .pfp {

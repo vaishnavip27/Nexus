@@ -5,7 +5,7 @@ import Detail from "./detail/Detail";
 import "./Dashboard.css";
 import { useChatStore } from "../lib/chatStore";
 
-function Dashboard() {
+export default function Dashboard() {
   const { chatId } = useChatStore();
 
   return (
@@ -16,5 +16,3 @@ function Dashboard() {
     </div>
   );
 }
-
-export default Dashboard;

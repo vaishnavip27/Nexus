@@ -25,7 +25,7 @@
     button {
       padding: 14px 20px;
       border-radius: 10px;
-      background-color: blue;
+      background-color: rgb(115, 38, 239);
       color: white;
       border: none;
       cursor: pointer;
@@ -53,7 +53,7 @@
     button {
       padding: 14 10px;
       border-radius: 10px;
-      background-color: blue;
+      background-color: rgb(115, 38, 239);
       color: white;
       border: none;
       cursor: pointer;

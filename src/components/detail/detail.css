@@ -4,7 +4,7 @@
   flex-grow: 1; /* Detail will take 1 part of the available space */
   flex-shrink: 1; /* Detail can shrink if needed */
   flex-basis: 0; /* Initial size before space distribution */
-  border: 1px solid #565656; /* Optional: Add borders for visualization */
+  border: 1px solid #000000; /* Optional: Add borders for visualization */
   font-family: "Noto Sans", sans-serif;
 }
 
@@ -52,75 +52,54 @@
   margin-right: 10px;
 }
 
-.photos {
-  display: flex;
-  justify-items: center;
-  flex-wrap: wrap;
-  gap: 10px;
-  padding: 10px;
-  margin-left: -2px;
+.user-deets button.logout {
+  margin-left: 23px;
+  background-color: rgb(115, 38, 239);
+  font-weight: 600;
+  font-size: 19px;
+  width: 334px;
 }
 
-.photoItem {
-  flex-wrap: wrap;
-  display: flex;
-  gap: 10px;
-  width: 100%;
-  height: 200px;
+.user-deets {
   border: 1px solid white;
 }
 
-.photo-detail {
-  width: calc(33.3% - 20px);
-  box-sizing: border-box;
+.user-deets .cd {
+  font-size: 23px;
+  font-weight: 600;
+  padding-left: 22px;
+  margin-top: 14px;
 }
 
-.photo-detail img {
-  width: 100%;
-  height: auto;
-  object-fit: cover;
-  border-radius: 3px;
-  cursor: pointer;
+.user-deets .photo-detail {
+  border: 1px solid white;
+  height: 8.8rem;
+  margin-top: 2.1rem;
 }
 
-.photo-detail span,
-.title span,
-.p-user h3,
-.p-user p {
-  font-family: "Noto Sans", sans-serif;
-}
-
-.title span {
-  font-size: 18px;
-}
-
-.detail button {
-  margin-top: 266px;
-}
-
-.theme .bg-img {
-  height: 110px;
-  width: 110px;
-  object-fit: cover;
-  margin-top: 6px;
-  border-radius: 5px;
-}
-
-.theme-container {
-  width: 300px;
-  padding: 8px;
-  margin-left: 14px;
-  font-size: 18px;
-}
-
-.theme-container .theme {
+.see-flex {
   display: flex;
-  gap: 10px;
+  align-items: center;
+  justify-content: center;
+  gap: 104px;
 }
 
-button.logout {
-  margin-top: 326px;
-  background-color: #bbef61;
-  color: black;
-  font-weight: 700;
+.photo-detail .pnv {
+  font-size: 18px;
+}
+
+.photo-detail .see-more {
+  font-size: 17px;
+}
+
+.photo-container {
+  display: flex;
+  align-items: center;
+  padding-left: 26px;
+}
+
+.photo-container img {
+  height: 100px;
+  width: 100px;
+  object-fit: cover;
 }

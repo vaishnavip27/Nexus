@@ -16,13 +16,13 @@ export default function Userinfo({ addMode, toggleAddMode }) {
           <HiMinus
             className="plus"
             onClick={toggleAddMode}
-            style={{ color: "black" }}
+            style={{ color: "white" }}
           />
         ) : (
           <HiPlus
             className="plus"
             onClick={toggleAddMode}
-            style={{ color: "black" }}
+            style={{ color: "white" }}
           />
         )}
       </div>
