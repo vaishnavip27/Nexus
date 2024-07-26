@@ -90,9 +90,6 @@ export default function List() {
             className="item"
             key={chat.chatId}
             onClick={() => handleSelect(chat)}
-            style={{
-              backgroundColor: chat?.isSeen ? "transparent" : "blue",
-            }}
           >
             <img src={pfImage} alt="profile" className="pfp" />
             <div className="texts">

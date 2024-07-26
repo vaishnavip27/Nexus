@@ -10,7 +10,7 @@ body {
   align-items: center;
   justify-content: center;
   margin-left: 500px;
-  margin-top: 50px;
+  background-color: black;
 }
 
 .login-container {
@@ -20,22 +20,28 @@ body {
   align-items: center;
   background-color: transparent;
   flex-direction: column;
+  margin-top: 70px;
 }
 
 .head {
   width: auto;
-  font-size: 32px;
+  font-size: 36px;
   font-weight: 600;
+  color: #bbef61;
+  font-weight: 800;
 }
 
 .sub-head {
-  font-size: 16px;
-  font-weight: 300;
-  margin-top: 3px;
+  font-size: 18px;
+  margin-top: 2px;
+  font-weight: 400;
+  color: #dadada;
 }
 
 .login-container .g-button {
+  border: 1px solid #7d7d7d;
   margin-top: 36px;
+  color: rgb(235, 235, 235);
 }
 
 .or-container {
@@ -47,9 +53,9 @@ body {
 }
 
 .or-container .line {
-  width: 174px;
+  width: 180px;
   height: 1px;
-  background-color: white;
+  background-color: #818181;
 }
 
 .or {
@@ -63,13 +69,14 @@ body {
 .form-group input {
   width: 100%;
   margin-right: 98px;
-  min-width: 350px;
+  min-width: 355px;
   padding: 12px; /* Reduced left padding to align text more to the left */
   text-align: left;
   box-sizing: border-box;
   background-color: transparent;
   border-radius: 9px;
-  border: 1px solid white;
+  border: 1px solid #7b7b7b;
+  color: rgb(235, 235, 235);
   font-size: 17px; /* This ensures padding doesn't affect the total width */
 }
 
@@ -86,35 +93,50 @@ body {
   display: flex;
   align-items: center;
   margin-left: 24px;
+  padding-top: 8px;
 }
 
 .remember-container .checkbox {
   height: 18px;
   width: 18px;
   margin-right: 6px;
+  cursor: pointer;
 }
 
 .rm {
   font-size: 16px;
   margin-right: 144px;
+  color: rgb(235, 235, 235);
 }
 
 .fp {
   font-size: 16px;
   text-decoration: underline;
+  color: rgb(235, 235, 235);
+  text-decoration-color: #bbef61;
 }
 
 #login {
   font-size: 17px;
   font-weight: 500;
+  color: rgb(235, 235, 235);
 }
 
 .login-link {
   font-size: 17px;
   font-weight: 500;
-  color: green;
+  color: #bbef61;
+}
+
+.login-button {
+  margin-left: 23px;
+  width: 400px;
 }
 
 .link-container {
   margin-top: 10px;
+}
+
+button {
+  border: 1px solid #7b7b7b;
 }

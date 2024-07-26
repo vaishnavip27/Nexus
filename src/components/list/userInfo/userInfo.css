@@ -9,7 +9,7 @@
 
 .userInfo .searchBar {
   flex: 1;
-  background-color: black;
+  background-color: rgb(16, 16, 16);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -31,7 +31,7 @@
 .plus {
   height: 33px;
   width: 33px;
-  background-color: black;
+  background-color: #bbef61;
   padding: 4px;
   border-radius: 10px;
   cursor: pointer;

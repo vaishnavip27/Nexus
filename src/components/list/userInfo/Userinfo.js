@@ -13,9 +13,17 @@ export default function Userinfo({ addMode, toggleAddMode }) {
           <input type="text" placeholder="Search..." />
         </div>
         {addMode ? (
-          <HiMinus className="plus" onClick={toggleAddMode} />
+          <HiMinus
+            className="plus"
+            onClick={toggleAddMode}
+            style={{ color: "black" }}
+          />
         ) : (
-          <HiPlus className="plus" onClick={toggleAddMode} />
+          <HiPlus
+            className="plus"
+            onClick={toggleAddMode}
+            style={{ color: "black" }}
+          />
         )}
       </div>
       {addMode && <AddUser />}

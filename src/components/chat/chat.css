@@ -61,7 +61,7 @@
 }
 
 .border {
-  border: 1px solid rgb(92, 92, 92);
+  border: 2px solid rgb(92, 92, 92);
   height: 42px;
   width: 42px;
   padding: 4px;
@@ -139,7 +139,6 @@
 .center {
   padding: 18px;
   flex: 1;
-  border: 1px solid rgb(67, 67, 67);
   background-color: black;
   overflow: scroll;
   display: flex;
@@ -157,7 +156,9 @@
 
       .texts {
         p {
-          background-color: #6e85b7;
+          background-color: #bbef61;
+          color: black;
+          font-weight: 500;
         }
       }
     }

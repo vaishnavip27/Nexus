@@ -18,6 +18,7 @@ body {
   align-items: center;
   background-color: transparent;
   flex-direction: column;
+  margin-top: 40px;
 }
 
 .head {
@@ -103,4 +104,9 @@ button {
 
 .or {
   font-size: 18px;
+}
+
+button.account {
+  width: 400px;
+  margin-left: 25px;
 }

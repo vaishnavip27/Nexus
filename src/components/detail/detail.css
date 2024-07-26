@@ -102,13 +102,12 @@
   height: 110px;
   width: 110px;
   object-fit: cover;
-  border: 1px solid white;
   margin-top: 6px;
+  border-radius: 5px;
 }
 
 .theme-container {
   width: 300px;
-  border: 1px solid white;
   padding: 8px;
   margin-left: 14px;
   font-size: 18px;
@@ -117,4 +116,11 @@
 .theme-container .theme {
   display: flex;
   gap: 10px;
+}
+
+button.logout {
+  margin-top: 326px;
+  background-color: #bbef61;
+  color: black;
+  font-weight: 700;
 }
