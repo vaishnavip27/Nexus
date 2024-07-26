@@ -97,3 +97,24 @@
 .detail button {
   margin-top: 266px;
 }
+
+.theme .bg-img {
+  height: 110px;
+  width: 110px;
+  object-fit: cover;
+  border: 1px solid white;
+  margin-top: 6px;
+}
+
+.theme-container {
+  width: 300px;
+  border: 1px solid white;
+  padding: 8px;
+  margin-left: 14px;
+  font-size: 18px;
+}
+
+.theme-container .theme {
+  display: flex;
+  gap: 10px;
+}

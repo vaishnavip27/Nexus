@@ -5,8 +5,10 @@ import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 import { db, auth } from "../../lib/firebase";
 import { useChatStore } from "../../lib/chatStore";
 import { getStorage, ref, getDownloadURL } from "firebase/storage";
+import bgOne from "../../pictures/bg-1.png";
+import bgTwo from "../../pictures/bg-2.jpg";
 
-export default function Detail() {
+export default function Detail({ onBackgroundChange }) {
   const [isExpanded, setIsExpanded] = useState(false);
   const [chatImages, setChatImages] = useState([]);
   const { chatId, selectedUser } = useChatStore();
@@ -49,11 +51,33 @@ export default function Detail() {
     return <div className="detail">Select a user to see details</div>;
   }
 
+  const handleBackgroundClick = (imgUrl) => {
+    onBackgroundChange(imgUrl); // Call the prop function to update background
+  };
+
   return (
     <div className="detail">
       <div className="p-user">
         <img src={selectedUser.photoURL || profileImg} alt="profile-img" />
         <div className="p-username">{selectedUser.username}</div>
+      </div>
+
+      <div className="theme-container">
+        <div className="heading">Background</div>
+        <div className="theme">
+          <img
+            src={bgOne}
+            alt="bg-1"
+            className="bg-img"
+            onClick={() => handleBackgroundClick(bgOne)}
+          />
+          <img
+            src={bgTwo}
+            alt="bg-2"
+            className="bg-img"
+            onClick={() => handleBackgroundClick(bgTwo)}
+          />
+        </div>
       </div>
 
       <div className="info">

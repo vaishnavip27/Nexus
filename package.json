@@ -22,6 +22,7 @@
     "tailwind-merge": "^2.4.0",
     "tailwindcss-animate": "^1.0.7",
     "web-vitals": "^2.1.4",
+    "zego-express-engine-webrtc": "^3.5.0",
     "zustand": "^4.5.4"
   },
   "scripts": {
