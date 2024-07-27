@@ -21,6 +21,8 @@ export default function Detail({ onBackgroundChange }) {
           <div className="photo-container">
             <img src={imgOne} alt="img-one" className="image" />
             <img src={imgTwo} alt="img-two" className="image" />
+            <img src={imgTwo} alt="img-two" className="image" />
+            <img src={imgOne} alt="img-one" className="image" />
           </div>
         </div>
 

@@ -103,11 +103,12 @@
   align-items: center;
   padding-left: 26px;
   gap: 8px;
+  overflow: scroll;
 }
 
 .photo-container img {
   height: 120px;
-  width: 160px;
+  width: 120px;
   object-fit: cover;
   margin-top: 10px;
   border-radius: 17px;
