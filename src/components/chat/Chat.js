@@ -23,7 +23,7 @@ import { db, storage } from "../../lib/firebase";
 import { useChatStore } from "../../lib/chatStore";
 import { useUserStore } from "../../lib/userStore";
 
-export default function Chat({ chatBackground }) {
+export default function Chat({ chatBackground, setImages }) {
   const [open, setOpen] = useState(false);
   const [text, setText] = useState("");
   const [messages, setMessages] = useState([]);
@@ -128,10 +128,7 @@ export default function Chat({ chatBackground }) {
       setText("");
 
       if (imgUrl) {
-        const event = new CustomEvent("newChatImage", {
-          detail: { chatId: imgUrl },
-        });
-        window.dispatchEvent(event);
+        setImages((prevImages) => [...prevImages, imgUrl]);
       }
     } catch (error) {
       console.error("Error sending message:", error);

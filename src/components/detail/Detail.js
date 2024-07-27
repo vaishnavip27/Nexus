@@ -1,11 +1,10 @@
 import React from "react";
 import "./detail.css";
-import imgOne from "../../pictures/photo-1.jpg";
-import imgTwo from "../../pictures/photo-2.jpg";
 import { auth } from "../../lib/firebase";
 import { IoDocumentText } from "react-icons/io5";
+import PropTypes from "prop-types";
 
-export default function Detail({ onBackgroundChange }) {
+export default function Detail({ images = [] }) {
   return (
     <div className="detail">
       <div className="user-deets">
@@ -20,10 +19,14 @@ export default function Detail({ onBackgroundChange }) {
           </div>
 
           <div className="photo-container">
-            <img src={imgOne} alt="img-one" className="image" />
-            <img src={imgTwo} alt="img-two" className="image" />
-            <img src={imgTwo} alt="img-two" className="image" />
-            <img src={imgOne} alt="img-one" className="image" />
+            {images.map((img, index) => (
+              <img
+                src={img}
+                alt={`img-${index}`}
+                className="image"
+                key={index}
+              />
+            ))}
           </div>
         </div>
 
@@ -64,3 +67,7 @@ export default function Detail({ onBackgroundChange }) {
     </div>
   );
 }
+
+Detail.propTypes = {
+  images: PropTypes.arrayOf(PropTypes.string).isRequired, // Ensure images prop is an array of strings
+};

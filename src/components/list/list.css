@@ -38,15 +38,15 @@ h3 {
   padding: 14px;
   cursor: pointer;
   border-left: 6px solid transparent;
-  width: 100%;
+  width: 99%;
   border-radius: 6px;
   height: 74px;
   margin-top: 8px;
-  background-color: rgb(24, 24, 27);
+  background-color: rgb(16, 16, 18);
 }
 
 .item:hover {
-  border-left: 6px solid rgb(115, 38, 239);
+  background-color: rgb(24, 24, 27);
 }
 
 .item .pfp {
@@ -63,7 +63,7 @@ h3 {
   display: flex;
   justify-content: center;
   border-radius: 5px;
-  background-color: rgba(66, 66, 66, 0.73);
+  background-color: rgba(39, 39, 39, 0.73);
 }
 
 .item .texts {

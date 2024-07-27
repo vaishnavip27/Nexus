@@ -15,6 +15,7 @@ import { useUserStore } from "./lib/userStore";
 
 function App() {
   const { currentUser, isLoading, fetchUserInfo } = useUserStore();
+  const [images, setImages] = useState([]);
 
   useEffect(() => {
     const unSub = onAuthStateChanged(auth, (user) => {
@@ -37,7 +38,10 @@ function App() {
       <div className="container">
         {currentUser ? (
           <Routes>
-            <Route path="/dashboard" element={<Dashboard />} />
+            <Route
+              path="/dashboard"
+              element={<Dashboard images={images} setImages={setImages} />}
+            />
             <Route path="/notification" element={<Notification />} />
             <Route path="*" element={<Navigate to="/dashboard" replace />} />
           </Routes>
