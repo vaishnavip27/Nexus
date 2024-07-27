@@ -2,6 +2,7 @@ import React from "react";
 import "./detail.css";
 import imgOne from "../../pictures/photo-1.jpg";
 import imgTwo from "../../pictures/photo-2.jpg";
+import { auth } from "../../lib/firebase";
 import { IoDocumentText } from "react-icons/io5";
 
 export default function Detail({ onBackgroundChange }) {

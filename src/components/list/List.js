@@ -91,7 +91,9 @@ export default function List() {
             key={chat.chatId}
             onClick={() => handleSelect(chat)}
           >
-            <img src={pfImage} alt="profile" className="pfp" />
+            <div className="pf-border">
+              <img src={pfImage} alt="profile" className="pfp" />
+            </div>
             <div className="texts">
               <span>{chat.user.username}</span>
               <p>{chat.lastMessage}</p>

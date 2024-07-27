@@ -73,20 +73,24 @@ export default function AddUser() {
   return (
     <div className="addUser">
       <form onSubmit={handleSearch}>
-        <div>
-          <input type="text" placeholder="Username" name="username" />
-        </div>
-        <div>
-          <button className="add-search">Search</button>
+        <div className="user-container">
+          <div>
+            <input type="text" placeholder="Username" name="username" />
+          </div>
+          <div className="add-button">
+            <button className="add-search">Search</button>
+          </div>
         </div>
       </form>
       {user && (
         <div className="user">
-          <div className="details">
-            <img src={userImg} alt="user-img"></img>
+          <div className="details-content">
+            <img src={userImg} alt="user-img" />
             <span>{user.username}</span>
           </div>
-          <button onClick={handleAdd}>Add user</button>
+          <button onClick={handleAdd} className="add-name">
+            Add user
+          </button>
         </div>
       )}
     </div>

@@ -11,9 +11,27 @@
   flex-direction: column;
 }
 
+.user {
+  margin-left: 8px;
+  display: flex;
+  align-items: center;
+  gap: 17px;
+}
+
+.user-img-border {
+  height: 54px;
+  width: 54px;
+  border-radius: 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 12px;
+  background-color: #252b2e;
+}
+
 .user img {
-  height: 52px;
-  width: 52px;
+  height: 43px;
+  width: 43px;
   object-fit: cover;
 }
 
@@ -30,16 +48,11 @@
   font-size: 22px;
 }
 
-.user {
-  display: flex;
-  align-items: center;
-  gap: 17px;
-}
-
 .profile {
   display: flex;
   flex-direction: column;
-  gap: 3px;
+  gap: 5px;
+  padding-left: 5px;
 }
 
 .profile span {
@@ -127,7 +140,9 @@
 }
 
 .input-wrapper .send {
-  right: 20px;
+  height: 26px;
+  width: 26px;
+  right: 14px;
 }
 
 .emoji .picker {
@@ -292,4 +307,15 @@
 
 .chat .center .message .texts .message-timestamp {
   font-size: 10px;
+  color: rgb(166, 166, 166);
+}
+
+.send-plane {
+  height: 50px;
+  width: 50px;
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #101010;
 }

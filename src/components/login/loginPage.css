@@ -10,7 +10,7 @@ body {
   align-items: center;
   justify-content: center;
   margin-left: 500px;
-  background-color: black;
+  background-color: #090b0e;
 }
 
 .login-container {
@@ -27,7 +27,7 @@ body {
   width: auto;
   font-size: 36px;
   font-weight: 600;
-  color: #bbef61;
+  color: rgb(115, 38, 239);
   font-weight: 800;
 }
 
@@ -113,7 +113,7 @@ body {
   font-size: 16px;
   text-decoration: underline;
   color: rgb(235, 235, 235);
-  text-decoration-color: #bbef61;
+  text-decoration-color: rgb(115, 38, 239);
 }
 
 #login {
@@ -125,7 +125,7 @@ body {
 .login-link {
   font-size: 17px;
   font-weight: 500;
-  color: #bbef61;
+  color: rgb(115, 38, 239);
 }
 
 .login-button {

@@ -59,7 +59,7 @@ button {
   justify-content: center;
   padding: 10px 18px;
   width: 78%;
-  background-color: blue;
+  background-color: rgb(115, 38, 239);
   border-radius: 8px;
   background-color: transparent;
   border: 1px solid white;
@@ -95,7 +95,7 @@ button {
 .login-link {
   font-size: 17px;
   font-weight: 500;
-  color: green;
+  color: rgb(115, 38, 239);
 }
 
 .link-container {

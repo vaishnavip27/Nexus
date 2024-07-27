@@ -1,7 +1,7 @@
 .addUser {
   width: max-content;
   height: max-content;
-  padding: 40px;
+  padding: 20px;
   background-color: rgba(0, 0, 0, 0.926);
   border-radius: 10px;
   position: absolute;
@@ -10,54 +10,68 @@
   left: 600px;
   right: 0;
 
-  form {
-    display: flex;
-    gap: 8px;
-
-    input {
-      padding: 8px 30px;
-      border-radius: 10px;
-      border: 1px solid rgb(54, 54, 54);
-      background-color: rgb(16, 16, 16);
-      outline: none;
-    }
-
-    button {
-      padding: 14px 20px;
-      border-radius: 10px;
-      background-color: rgb(115, 38, 239);
-      color: white;
-      border: none;
-      cursor: pointer;
-    }
+  input {
+    padding: 12px 30px;
+    border-radius: 10px;
+    border: 1px solid rgb(54, 54, 54);
+    background-color: rgb(16, 16, 16);
+    outline: none;
+    margin-top: 40px;
   }
+}
 
-  .user {
-    margin-top: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
+.user-name {
+  margin-top: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-    .detail {
-      display: flex;
-      align-items: center;
-      gap: 16px;
-
-      img {
-        width: 60px;
-        height: 60px;
-        object-fit: cover;
-      }
-    }
-
-    button {
-      padding: 14 10px;
-      border-radius: 10px;
-      background-color: rgb(115, 38, 239);
-      color: white;
-      border: none;
-      cursor: pointer;
-      margin-top: 34px;
-    }
+  img {
+    width: 50px;
+    height: 50px;
+    object-fit: cover;
   }
+}
+
+.user-container {
+  gap: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 90px;
+}
+
+button.add-search {
+  background-color: rgb(115, 38, 239);
+  padding: 10px 46px;
+}
+
+button.add-user {
+  padding: 10px 46px;
+}
+
+.details-content {
+  display: flex;
+  height: 60px;
+  width: 254px;
+  padding: 5px;
+  align-items: center;
+  margin-top: 36px;
+  padding-bottom: 15px;
+}
+
+.details-content span {
+  padding-left: 16px;
+}
+
+.details img {
+  height: 58px;
+  width: 58px;
+}
+
+.user .add-name {
+  padding: 5px;
+  height: 50px;
+  width: 115px;
+  background-color: rgb(115, 38, 239);
 }

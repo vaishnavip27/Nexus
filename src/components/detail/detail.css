@@ -85,7 +85,7 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 104px;
+  gap: 110px;
 }
 
 .photo-detail .pnv,
@@ -95,7 +95,10 @@
 
 .photo-detail .see-more,
 .share-details .see-more {
-  font-size: 17px;
+  font-size: 15px;
+  text-decoration: underline;
+  color: rgb(199, 199, 199);
+  text-decoration-color: rgb(115, 38, 239);
 }
 
 .photo-container {
@@ -118,7 +121,7 @@
   display: flex;
   align-items: items;
   justify-content: center;
-  gap: 158px;
+  gap: 172px;
 }
 
 .content {
@@ -139,11 +142,12 @@
 .content .content-des {
   font-size: 17px;
   margin-left: 5px;
+  color: rgb(226, 226, 226);
 }
 
 .content .s-doc {
-  height: 48px;
-  width: 54px;
+  height: 50px;
+  width: 56px;
   border-radius: 5px;
   display: flex;
   align-items: center;

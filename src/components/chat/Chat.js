@@ -209,7 +209,9 @@ export default function Chat({ chatBackground }) {
     >
       <div className="top">
         <div className="user">
-          <img src={selectedUser?.photoURL || userImg} alt="user-img" />
+          <div class="user-img-border">
+            <img src={selectedUser?.photoURL || userImg} alt="user-img" />
+          </div>
           <div className="profile">
             <span>{selectedUser?.username}</span>
             <p>Online</p>
@@ -287,11 +289,14 @@ export default function Chat({ chatBackground }) {
             className="pin"
             onClick={() => setAttachmentsOpen((prev) => !prev)}
           />
-          <RiSendPlaneFill
-            className="send"
-            onClick={() => handleSend()}
-            style={{ color: "#bbef61" }}
-          />
+
+          <div className="send-plane">
+            <RiSendPlaneFill
+              className="send"
+              onClick={() => handleSend()}
+              style={{ color: "rgb(115,38,239)" }}
+            />
+          </div>
 
           <div className="emoji">
             {open && (
