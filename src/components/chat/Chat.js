@@ -154,12 +154,6 @@ export default function Chat({ chatBackground, setImages }) {
       const downloadURL = await getDownloadURL(storageRef);
       await handleSend(downloadURL);
 
-      if (isImage) {
-        await handleSend(downloadURL);
-      } else {
-        await handleSend(null, downloadURL);
-      }
-
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
       }
@@ -224,7 +218,7 @@ export default function Chat({ chatBackground, setImages }) {
     >
       <div className="top">
         <div className="user">
-          <div class="user-img-border">
+          <div className="user-img-border">
             <img src={selectedUser?.photoURL || userImg} alt="user-img" />
           </div>
           <div className="profile">

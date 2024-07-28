@@ -1,10 +1,11 @@
 import "./signup.css";
 import googleIcon from "../../pictures/googleIcon.png";
 import { Link, useNavigate } from "react-router-dom";
-import { createUserWithEmailAndPassword } from "firebase/auth";
+import { createUserWithEmailAndPassword, signInWithPopup } from "firebase/auth";
 import { doc, setDoc } from "firebase/firestore";
-import { auth, db } from "../../lib/firebase";
+import { auth, db, googleProvider } from "../../lib/firebase";
 import { useState } from "react";
+import { toast } from "react-toastify";
 
 export default function SignUp() {
   const [loading, setLoading] = useState(false);
@@ -36,9 +37,44 @@ export default function SignUp() {
         }),
       ]);
 
+      toast.success("Account created successfully");
       navigate("/login"); // Redirect to login page after successful signup
     } catch (error) {
       console.log(error);
+      toast.error("Signup failed");
+    } finally {
+      setLoading(false);
+    }
+  };
+
+  const handleGoogleSignIn = async () => {
+    setLoading(true);
+    try {
+      const result = await signInWithPopup(auth, googleProvider);
+      const user = result.user;
+
+      // Check if the user already exists in Firestore
+      const userDoc = doc(db, "users", user.uid);
+      const userSnapshot = await userDoc.get();
+
+      if (!userSnapshot.exists()) {
+        // If not, create a new user document
+        await setDoc(userDoc, {
+          username: user.displayName,
+          email: user.email,
+          id: user.uid,
+        });
+
+        await setDoc(doc(db, "userchats", user.uid), {
+          chats: [],
+        });
+      }
+
+      toast.success("Signed up with Google");
+      navigate("/dashboard");
+    } catch (error) {
+      console.error(error);
+      toast.error("Google Sign-In failed");
     } finally {
       setLoading(false);
     }
@@ -49,7 +85,11 @@ export default function SignUp() {
       <div className="signup-container">
         <div className="head">Create account</div>
 
-        <button>
+        <button
+          className="g-button"
+          onClick={handleGoogleSignIn}
+          disabled={loading}
+        >
           <img src={googleIcon} alt="icon" className="g-icon" />
           Sign in with Google
         </button>
@@ -89,7 +129,7 @@ export default function SignUp() {
             />
           </div>
 
-          <button type="submit" className="account">
+          <button type="submit" className="account" disabled={loading}>
             {loading ? "Creating Account..." : "Create Account"}
           </button>
         </form>
