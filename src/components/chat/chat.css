@@ -235,7 +235,7 @@
   flex-direction: column;
   z-index: 100;
   gap: 7px;
-  height: 92px;
+  height: 136px;
   width: 200px;
 }
 
@@ -254,13 +254,19 @@
 }
 
 .image-icon,
-.camera-icon {
+.camera-icon,
+.doc-icon {
   margin-left: 10px;
 }
 
 .image-icon {
   height: 22px;
   width: 22px;
+}
+
+.doc-icon {
+  height: 20px;
+  width: 20px;
 }
 
 .camera-icon {

@@ -6,6 +6,7 @@ import { LuPhone } from "react-icons/lu";
 import { IoVideocamOutline } from "react-icons/io5";
 import { BsInfoCircle } from "react-icons/bs";
 import { MdEmojiEmotions } from "react-icons/md";
+import { IoDocumentAttach } from "react-icons/io5";
 import { GrAttachment } from "react-icons/gr";
 import { RiSendPlaneFill } from "react-icons/ri";
 import { FaCamera } from "react-icons/fa";
@@ -140,11 +141,24 @@ export default function Chat({ chatBackground, setImages }) {
     if (!file) return;
 
     try {
-      const storageRef = ref(storage, `chat_images/${Date.now()}_${file.name}`);
+      const fileExtension = file.name.split(".").pop().toLowerCase();
+      const isImage = ["jpg", "jpeg", "png"].includes(fileExtension);
+
+      const storagePath = isImage
+        ? `chat_images/${Date.now()}_${file.name}`
+        : `chat_documents/${Date.now()}_${file.name}`;
+
+      const storageRef = ref(storage, storagePath);
       await uploadBytes(storageRef, file);
 
       const downloadURL = await getDownloadURL(storageRef);
       await handleSend(downloadURL);
+
+      if (isImage) {
+        await handleSend(downloadURL);
+      } else {
+        await handleSend(null, downloadURL);
+      }
 
       if (fileInputRef.current) {
         fileInputRef.current.value = "";
@@ -189,6 +203,10 @@ export default function Chat({ chatBackground, setImages }) {
       }
     }
   }, [webcamRef, handleSend]);
+
+  const handleDocumentOptionClick = () => {
+    fileInputRef.current?.click();
+  };
 
   if (!chatId) {
     return (
@@ -313,6 +331,13 @@ export default function Chat({ chatBackground, setImages }) {
               </div>
               <div className="attachment-option" onClick={handleCameraClick}>
                 <FaCamera className="camera-icon" /> Camera
+              </div>
+              <div
+                className="attachment-option"
+                onClick={handleDocumentOptionClick}
+              >
+                <IoDocumentAttach className="doc-icon" />
+                Document
               </div>
             </div>
           )}
