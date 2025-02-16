@@ -93,6 +93,8 @@ export default function LoginPage({ onLoginSuccess }) {
               name="email"
               placeholder="Enter email"
               required
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="form-group">
@@ -102,13 +104,21 @@ export default function LoginPage({ onLoginSuccess }) {
               id="password"
               name="password"
               placeholder="Enter password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
               required
             />
           </div>
 
           <div className="remember-container">
             <label>
-              <input type="checkbox" name="remember" className="checkbox" />
+              <input
+                type="checkbox"
+                name="remember"
+                className="checkbox"
+                checked={rememberMe}
+                onChange={(e) => setRememberMe(e.target.checked)}
+              />
               <span className="rm">Remember me</span>
             </label>
             <span className="fp">Forgot password?</span>

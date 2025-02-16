@@ -55,10 +55,9 @@ export default function SignUp() {
 
       // Check if the user already exists in Firestore
       const userDoc = doc(db, "users", user.uid);
-      const userSnapshot = await userDoc.get();
+      const userSnapshot = await getDoc(userDoc);
 
       if (!userSnapshot.exists()) {
-        // If not, create a new user document
         await setDoc(userDoc, {
           username: user.displayName,
           email: user.email,
@@ -116,6 +115,8 @@ export default function SignUp() {
               type="email"
               id="email"
               name="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
               placeholder="Enter your email"
             />
           </div>
@@ -126,6 +127,8 @@ export default function SignUp() {
               id="password"
               placeholder="Enter your password"
               name="password"
+              value={password}
+              onChange={(e) => setPassword(e.target.value)}
             />
           </div>
 
