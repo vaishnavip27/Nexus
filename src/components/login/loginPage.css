@@ -1,13 +1,3 @@
-body {
-  overflow: hidden;
-  margin: 0;
-  padding: 0;
-  height:100vh;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  box-sizing: border-box;
-}
 
 .main-container {
   display: flex;
@@ -24,6 +14,7 @@ body {
   display: flex;
   align-items: center;
   background-color: transparent;
+  flex-direction: column;
 }
 
 .head {
